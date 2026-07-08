@@ -1,0 +1,52 @@
+/*
+  Presentation-theater theme (single dark theme).
+  Lives in its own file (imported after globals.css in layout.tsx) so it
+  wins the cascade against shadcn/tailwind.css tokens, and uses
+  :root:not(.light) to match that stylesheet's specificity.
+*/
+:root,
+:root:not(.light) {
+  color-scheme: dark;
+  --background: #0a0a0c;
+  --foreground: #f2f0ed;
+  --card: #121215;
+  --card-foreground: #f2f0ed;
+  --popover: #121215;
+  --popover-foreground: #f2f0ed;
+  --primary: #f2f0ed;
+  --primary-foreground: #0a0a0c;
+  --secondary: #1a1a1e;
+  --secondary-foreground: #f2f0ed;
+  --muted: #1a1a1e;
+  --muted-foreground: #8f8d92;
+  --accent: #ff2e86;
+  --accent-foreground: #0a0a0c;
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: rgba(242, 240, 237, 0.1);
+  --input: rgba(242, 240, 237, 0.15);
+  --ring: #ff2e86;
+  --chart-1: #ff2e86;
+  --chart-2: #8f8d92;
+  --chart-3: #f2f0ed;
+  --chart-4: #1a1a1e;
+  --chart-5: #121215;
+  --radius: 0.375rem;
+  --sidebar: #121215;
+  --sidebar-foreground: #f2f0ed;
+  --sidebar-primary: #ff2e86;
+  --sidebar-primary-foreground: #0a0a0c;
+  --sidebar-accent: #1a1a1e;
+  --sidebar-accent-foreground: #f2f0ed;
+  --sidebar-border: rgba(242, 240, 237, 0.1);
+  --sidebar-ring: #ff2e86;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
