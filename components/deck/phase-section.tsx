@@ -33,7 +33,7 @@ export function PhaseSection({ phase }: { phase: Phase }) {
         <>
           {/* Mobile: the demo pins at the top; beats scroll beneath it. */}
           <div className="sticky top-0 z-20 border-b border-border bg-background px-4 pb-3 pt-2 md:hidden">
-            <p className="mb-2 font-mono text-xs tracking-[0.2em] text-accent">
+            <p className="mb-2 font-mono text-[0.72rem] uppercase tracking-[0.08em] text-muted-foreground">
               {phase.number} · {phase.title}
             </p>
             {Demo ? <Demo stage={stage} /> : <DemoSlot id={phase.demo} />}
@@ -95,17 +95,17 @@ function PhaseHeader({ phase }: { phase: Phase }) {
   return (
     <div className="border-t border-border">
       <div className="mx-auto max-w-6xl px-6 pb-12 pt-24 lg:px-10">
-        <p className="font-mono text-sm tracking-[0.25em] text-accent">
+        <p className="font-mono text-[0.72rem] uppercase tracking-[0.08em] text-muted-foreground">
           {phase.number}
         </p>
         <div className="mt-3 flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2">
           <h2
             id={`phase-${phase.id}-title`}
-            className="text-balance font-sans text-3xl font-bold leading-tight text-foreground md:text-4xl"
+            className="text-balance font-sans text-[1.9rem] font-medium leading-tight text-foreground"
           >
             {phase.title}
           </h2>
-          <p className="max-w-[44ch] text-pretty text-base leading-relaxed text-muted-foreground">
+          <p className="max-w-[44ch] text-pretty text-[0.95rem] leading-[1.55] text-muted-foreground">
             {phase.summary}
           </p>
         </div>

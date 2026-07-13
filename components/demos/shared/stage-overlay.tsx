@@ -25,7 +25,7 @@ export function StageOverlay({
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0 }}
           transition={{ duration: DUR.base, ease: EASE_OUT }}
-          className="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-background/80"
+          className="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-card/90"
         >
           {children}
         </motion.div>
@@ -49,7 +49,7 @@ export function PanelButton({
       onClick={onClick}
       onPointerDown={(e) => e.stopPropagation()}
       whileTap={{ scale: 0.97 }}
-      className="rounded-md border border-accent px-5 py-2.5 font-mono text-sm font-medium tracking-widest text-accent transition-colors duration-150 hover:bg-accent/10"
+      className="rounded-md bg-accent px-5 py-3 font-mono text-[0.72rem] font-medium uppercase tracking-[0.08em] text-accent-foreground transition-colors duration-150 hover:bg-accent/90"
     >
       {label}
     </motion.button>

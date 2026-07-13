@@ -1,44 +1,45 @@
 /*
-  Presentation-theater theme (single dark theme).
+  Braun instrument theme (dieter-grid, single light theme).
   Lives in its own file (imported after globals.css in layout.tsx) so it
   wins the cascade against shadcn/tailwind.css tokens, and uses
-  :root:not(.light) to match that stylesheet's specificity.
+  :root:not(.light) to match that stylesheet's specificity. Keep this
+  block byte-identical to the :root block in globals.css.
 */
 :root,
 :root:not(.light) {
-  color-scheme: dark;
-  --background: #0a0a0c;
-  --foreground: #f2f0ed;
-  --card: #121215;
-  --card-foreground: #f2f0ed;
-  --popover: #121215;
-  --popover-foreground: #f2f0ed;
-  --primary: #f2f0ed;
-  --primary-foreground: #0a0a0c;
-  --secondary: #1a1a1e;
-  --secondary-foreground: #f2f0ed;
-  --muted: #1a1a1e;
-  --muted-foreground: #8f8d92;
-  --accent: #ff2e86;
-  --accent-foreground: #0a0a0c;
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: rgba(242, 240, 237, 0.1);
-  --input: rgba(242, 240, 237, 0.15);
-  --ring: #ff2e86;
-  --chart-1: #ff2e86;
-  --chart-2: #8f8d92;
-  --chart-3: #f2f0ed;
-  --chart-4: #1a1a1e;
-  --chart-5: #121215;
-  --radius: 0.375rem;
-  --sidebar: #121215;
-  --sidebar-foreground: #f2f0ed;
-  --sidebar-primary: #ff2e86;
-  --sidebar-primary-foreground: #0a0a0c;
-  --sidebar-accent: #1a1a1e;
-  --sidebar-accent-foreground: #f2f0ed;
-  --sidebar-border: rgba(242, 240, 237, 0.1);
-  --sidebar-ring: #ff2e86;
+  color-scheme: light;
+  --background: #e7e5e1;
+  --foreground: #0f1113;
+  --card: #f3f1ec;
+  --card-foreground: #0f1113;
+  --popover: #f3f1ec;
+  --popover-foreground: #0f1113;
+  --primary: #0f1113;
+  --primary-foreground: #f3f1ec;
+  --secondary: #dedbd5;
+  --secondary-foreground: #0f1113;
+  --muted: #dedbd5;
+  --muted-foreground: #6b6f74;
+  --accent: #d95600;
+  --accent-foreground: #f3f1ec;
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: rgba(107, 111, 116, 0.3);
+  --input: rgba(107, 111, 116, 0.35);
+  --ring: #d95600;
+  --chart-1: #d95600;
+  --chart-2: #6b6f74;
+  --chart-3: #0f1113;
+  --chart-4: #dedbd5;
+  --chart-5: #f3f1ec;
+  --radius: 0.25rem;
+  --sidebar: #f3f1ec;
+  --sidebar-foreground: #0f1113;
+  --sidebar-primary: #d95600;
+  --sidebar-primary-foreground: #f3f1ec;
+  --sidebar-accent: #dedbd5;
+  --sidebar-accent-foreground: #0f1113;
+  --sidebar-border: rgba(107, 111, 116, 0.3);
+  --sidebar-ring: #d95600;
 }
 
 html {

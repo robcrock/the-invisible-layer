@@ -38,12 +38,12 @@ export function SegmentedControl<T extends string>({
             aria-checked={active}
             onClick={() => onChange(option.value)}
             whileTap={{ scale: 0.97 }}
-            className="relative rounded px-2.5 py-1 font-mono text-[0.65rem] font-medium tracking-widest"
+            className="relative rounded-[1px] px-2.5 py-1 font-mono text-[0.72rem] font-medium uppercase tracking-[0.08em]"
           >
             {active && (
               <motion.span
                 layoutId={`${uid}-active`}
-                className="absolute inset-0 rounded bg-foreground/10"
+                className="absolute inset-0 rounded-[1px] bg-foreground/10"
                 transition={
                   reducedMotion
                     ? { duration: 0 }

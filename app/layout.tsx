@@ -1,15 +1,15 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
-import { Archivo, IBM_Plex_Mono } from 'next/font/google'
+import { Inter, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import './theme.css'
 
-const archivo = Archivo({
+const inter = Inter({
   subsets: ['latin'],
   variable: '--font-sans-custom',
 })
 
-const plexMono = IBM_Plex_Mono({
+const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
   weight: ['400', '500'],
   variable: '--font-mono-custom',
@@ -40,8 +40,8 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  colorScheme: 'dark',
-  themeColor: '#0A0A0C',
+  colorScheme: 'light',
+  themeColor: '#E7E5E1',
 }
 
 export default function RootLayout({
@@ -52,7 +52,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`bg-background ${archivo.variable} ${plexMono.variable}`}
+      className={`bg-background ${inter.variable} ${jetbrainsMono.variable}`}
     >
       <body className="font-sans antialiased">
         {children}

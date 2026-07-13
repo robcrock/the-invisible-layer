@@ -23,7 +23,7 @@ export function DebugToggle({ on, onChange, label }: DebugToggleProps) {
       onClick={() => onChange(!on)}
       whileTap={{ scale: 0.97 }}
       className={cn(
-        'flex items-center gap-1.5 rounded-md border px-2.5 py-1 font-mono text-[0.65rem] font-medium tracking-widest transition-colors duration-150',
+        'flex items-center gap-1.5 rounded-md border px-2.5 py-1 font-mono text-[0.72rem] font-medium uppercase tracking-[0.08em] transition-colors duration-150',
         on
           ? 'border-accent bg-accent/10 text-accent'
           : 'border-border text-muted-foreground hover:text-foreground',
