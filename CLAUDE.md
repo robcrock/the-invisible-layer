@@ -5,14 +5,14 @@ A scrollytelling presentation for a data-visualization meetup talk called
 target you touch.* Honest marks keep charts truthful; generous invisible hit
 targets keep them usable; the invisible layer is what lets a chart have both.
 
-This repo was scaffolded in v0 (Vercel) and deployed there. The scaffold is the
-**shell** — sticky-phase scrolling, content model, placeholder demo slots. The
-remaining work is building the **real interactive demo widgets** that mount into
-those slots.
+The deck is built and playable. Each chart phase pins its interactive demo
+beside the scrolling narrative and runs a repeatable measured arc:
+**CHALLENGE → ROUND 1 (timed) → THE FIX (named law) → ROUND 2 → MEASURED
+delta → IN YOUR WORK.** The audience generates the evidence live.
 
 ## Stack
 
-- Next.js (App Router) + TypeScript + Tailwind
+- Next.js (App Router) + TypeScript + Tailwind v4 (tokens via `@theme` in CSS)
 - Motion (`motion/react`, i.e. motion.dev) for animation
 - D3 for the demo widgets — **math only** (see hard constraints)
 
@@ -22,114 +22,141 @@ those slots.
   element; native React event handlers (`onPointerMove`, `onClick`, etc.) drive
   every interaction.
 - **D3 is imported for math only:** scales (`scaleLinear`, `scaleBand`),
-  `d3.max`, generators (`line`, `area`), `d3.bisector`, `d3.Delaunay`,
-  `d3.quadtree`. That's it.
+  generators (`line`), `d3.bisector`, `d3.Delaunay`, `d3.quadtree`. That's it.
 - **No imperative D3.** Never `d3.select()`, `.append()`, `.on()`, `.attr()`,
   or the general-update pattern. If you're reaching for a D3 selection, stop —
   render it in JSX instead.
-- **No canvas.** SVG only.
-- These constraints are the *point* of the talk. Honor them even when imperative
-  D3 would be shorter.
+- **No canvas. SVG only.**
+- **Native scroll only** — no wheel hijacking, no scroll-snap, no scroll-jacking.
+- **Never start a timer from scroll.** Scroll may *arm* a game (show its START
+  button); the clock starts only on a presenter click.
+- Respect `prefers-reduced-motion` everywhere (pulses, morphs, transitions).
+- These constraints are the *point* of the talk. Honor them even when a
+  shortcut would be shorter.
 
 ## The signature motif
 
-The talk's recurring device is a **debug toggle** that reveals the normally
-invisible hit-target layer as a translucent **hot-pink (#FF2E86)** overlay —
-"here's what your mouse actually sees." This is both the demos' teaching move and
-the deck's visual identity (progress bar, active dots, kickers, slot borders all
-use the same pink). Build a shared toggle/overlay primitive the widgets reuse,
-so the reveal looks and behaves identically across bars, lines, and scatter.
+The recurring device is a **debug toggle** ("HIT TARGETS") that reveals the
+normally invisible hit-target layer as translucent **utility orange
+(`#D95600`)** — "here's what your mouse actually sees." The color choice is the
+design system's argument: in dieter-grid (Braun), orange is reserved for the
+one control that does something, and in this deck the orange layer IS the one
+thing that responds. `DebugToggle`/`DebugLayer` in
+`components/demos/shared/debug-toggle.tsx` are the shared primitives — every
+widget's reveal must look and behave identically.
 
-## Repo structure (reconcile with actual v0 output)
+**Single-accent discipline (load-bearing):** orange appears only as
+(1) the one primary action button visible at a time (START/RESET),
+(2) the debug layer + live target pulse/flash + the results delta line,
+(3) the progress bar, (4) the active beat square. Kickers, phase numbers, and
+slot ids are metadata → grey. No second accent, no gradients, no shadows, no
+blur.
 
-The v0 prompt asked for roughly this shape; the generated code may differ
-slightly. Read what's actually here first and adapt — don't assume.
+## Architecture
 
-- `content.ts` — all talk copy as typed data (`Phase[]`, each with `Beat[]`).
-  Every wording change happens here, never in components.
-- `app/page.tsx` — composes `ProgressBar` + maps phases to `PhaseSection`.
-- `PhaseSection` — the sticky left panel + maps beats to `BeatBlock`.
-- `BeatBlock` — one talking point; renders a `DemoSlot` when `beat.demoSlot` is set.
-- `DemoSlot` — 16:9 dashed placeholder keyed by id. **These are what the real
-  widgets replace.**
+- `lib/content.ts` — all talk copy as typed data. `Phase[]` (each with
+  `demo?: string` — a `demoRegistry` key that selects the pinned layout) and
+  `Beat[]` (each with `demoStage?: string` — the stage the pinned demo adopts
+  when that beat activates). `demoCopy` holds every string a widget renders.
+  **Every wording change happens here, never in components.**
+- `components/deck/phase-section.tsx` — the pinned scrolly layout: compact
+  phase header, narrative beats scrolling left (5fr), the phase's demo sticky
+  and centered right (7fr) for the whole phase, beat-square rail beneath it.
+  Mobile pins the demo on top. Phases without `demo` render a centered prose
+  column. Derives the current stage as *the last defined `demoStage` at or
+  before the active beat* and passes it as one prop: `<Demo stage={stage} />`.
+- `components/deck/beat-block.tsx` — one talking point; `useInView` margin
+  `-40% 0px -40% 0px` activates it; inactive beats dim (opacity only).
+- `components/demos/index.ts` — `demoRegistry: Record<string,
+  ComponentType<{ stage?: string }>>`. Unregistered ids fall back to the dashed
+  `DemoSlot` placeholder.
 
-Scroll mechanic: CSS `position: sticky` per phase section + Motion `useInView`
-(activation margin ~`-40% 0px -40% 0px`) to dim/blur inactive beats. Native
-scroll only — no wheel hijacking, no scroll-jacking. Respect
-`prefers-reduced-motion`.
+### Stage-sync contract (scroll-synced with presenter override)
 
-## The demo roadmap — the real remaining work
+`components/demos/shared/use-stage-sync.ts` applies a scroll-driven stage
+exactly once per *change* of stage value. Rules:
 
-Each `DemoSlot` id below maps to a widget to build. All share the debug-toggle /
-pink-overlay motif. Build them isolated (each self-contained, own state) so they
-can double as **LAB specimens on robcrock.com** later.
+1. Widgets work standalone with `stage` omitted (defaults = first stage).
+2. Manual overrides (segmented controls, debug toggle, slider) persist through
+   scroll jitter within a beat; a *new* stage from scroll wins over them.
+3. Games **arm, never autostart** — `arm` shows the START overlay; `start`
+   comes only from the button.
+4. Stage events never clear recorded results; only RESET returns a game to
+   idle. Stage events are ignored while a round is `running`.
+5. `arm 2` while nothing has been played arms round 1 instead — rounds run in
+   order or the comparison is meaningless.
+6. Unknown stage strings are no-ops (content typos degrade gracefully).
 
-| slot id | chart | what it teaches | core geometry |
-|---|---|---|---|
-| `cold-open-pixel-hunt` | dense line | the frustration — naive hover, only the 2px path is the target | none (deliberately painful) |
-| `bars-before-after` | bar | band targets vs rect-only; pink reveals the bands | full-height `scaleBand` step rects |
-| `fitts-timer` | two targets | interaction, measured | 3px bar vs wide band, timed |
-| `line-before-after` | line | trace-the-line vs computed target | one overlay rect + `d3.bisector` on x |
-| `scatter-before-after` | scatter | tiny-dot misses and wrong-hits | naive per-dot hitboxes |
-| `voronoi-reveal` | scatter | every pixel belongs to a point; then clamp it | `d3.Delaunay.find`, then `d3.quadtree.find(x,y,r)` |
+### Shared game primitives
 
-### Per-widget notes
+- `shared/use-round-game.ts` — the two-round reducer (`idle → armed → running
+  → between → results`), rAF display clock, 25s mercy cap, hit/miss/wrongHit
+  counters.
+- `shared/round-results.tsx` — the one results table every game shows (round 1
+  vs round 2, avg per hit, delta template, framing, RESET).
+- `shared/stage-overlay.tsx` — `StageOverlay` (armed/results panel) +
+  `PanelButton` (the solid orange switch).
+- `shared/demo-stage.tsx` — card chrome: slot id, controls row, 16:9 body
+  (viewBox 640×360 ≈ CSS px at the rendered width — don't widen the demo
+  column past ~650px or "3px bar / 2px line" stop being honest claims),
+  hint + instrumentation footer.
+- `shared/data.ts` — seeded deterministic data (`makeSeries`, `makeScatter`,
+  `BAR_DATA`, `makeTargetSequence`, `LINE_TARGETS`, `SCATTER_TARGETS`). Module
+  scope so SSR/client SVG is byte-identical.
 
-- **cold-open-pixel-hunt** — Should feel bad on purpose. Only the visible ~2px
-  path receives pointer events; reading a specific value requires pixel-hunting.
-  Optional debug toggle to show how thin the target actually is.
-- **bars-before-after** — Toggle between naive (hover only the drawn rect) and
-  band targets (transparent rects spanning full column height + full `scaleBand`
-  step including padding). Pink debug overlay makes the bands visible. Note the
-  SVG gotcha in a comment: `fill="none"` swallows pointer events — use
-  `fill="transparent"` or `pointerEvents="all"`.
-- **fitts-timer** — The one quantified moment. Two rounds: click a 3px bar N
-  times, then a wide band N times, timer running; show the per-click delta and a
-  one-line Fitts framing. Barely needs D3 (a `scaleBand` at most). Keep it dead
-  simple and self-contained.
-- **line-before-after** — Ladder of fixes, worst to best, but the demo's job is
-  the pivot: a single overlay rect over the plot, `onPointerMove` reads pointer
-  x, `d3.bisector` snaps to nearest datum. **The target is computed, not drawn** —
-  that's the hinge of the whole talk. Tooltip should anchor to the *snapped
-  point*, not the cursor, and be hoverable (this is why most tooltips vanish).
-- **scatter-before-after** — Tiny dots, show both failure modes: outright misses
-  and hovering the wrong (visually-near-but-not-nearest) point.
-- **voronoi-reveal** — The climax. `d3.Delaunay.from(points)`, `delaunay.find(x,y)`
-  for nearest-point lookup with zero dead space. Pink toggle overlays the Voronoi
-  cells (`voronoi.renderCell` path data rendered as JSX `<path>`). Then a *second*
-  toggle adds the radius clamp via `d3.quadtree().find(x, y, radius)` — surface
-  the dead-zone-vs-mis-trigger tradeoff as a real design decision with no
-  universal answer, not a bug fix.
+### The four widgets (id → file)
 
-## Design
+| id | file | arc |
+|---|---|---|
+| `cold-open-pixel-hunt` | `pixel-hunt.tsx` | START THE HUNT → catch date #078 on the 2px stroke (hold 500ms or click) → readout (time, % on line, tooltip deaths). Stages: `hunt` / `honest` / `reveal`. |
+| `bars-fitts` | `bars-fitts.tsx` | Hover the honest chart → morph to rudely-short data → round 1 on drawn rects → band reveal (debug on) → round 2 on invisible bands → Fitts delta. Stages: `mark` / `game-1` / `band` / `game-2` / `results`. |
+| `lines-trace` | `lines-trace.tsx` | The cold open's dataset. Trace explore → round 1 click the stroke at five dates → bisector overlay reveal → round 2 click anywhere → Steering delta → hoverable data-anchored tooltip. Stages: `trace` / `game-1` / `computed` / `game-2` / `results` / `craft`. |
+| `scatter-voronoi` | `scatter-voronoi.tsx` | Twin-steal explore → round 1 find five ringed 3px dots (misses + wrong hits) → Voronoi tessellation reveal → round 2 via `delaunay.find` (misses impossible) → radius clamp coda with slider. Stages: `naive` / `game-1` / `voronoi` / `game-2` / `results` / `clamp`. |
 
-Dark presentation-theater: near-black `#0A0A0C`, off-white type, lots of air,
-flat (no cards, no shadows). Accent `#FF2E86` (the debug pink). Monospace for
-kickers / phase numbers / slot ids; clean grotesque for titles. Phase titles
-large (`clamp` ~3–5rem), beat titles ~1.75rem, body ~1.05rem, ~55ch measure.
+## Design (dieter-grid / Braun functional minimalism)
+
+Source: designdotmd.directory/d/dieter-grid. Single light theme; tokens live in
+`app/globals.css` **and** `app/theme.css` (imported after globals so it wins
+the cascade against shadcn tokens — keep the two blocks byte-identical, don't
+consolidate them).
+
+- Colors: page `#E7E5E1` (concrete), surfaces `#F3F1EC`, ink `#0F1113`,
+  metadata grey `#6B6F74`, hairline borders `rgba(107,111,116,.3)`, accent
+  `#D95600` utility orange only.
+- Type: Inter (display/body — display ~3.5rem w500 −0.02em, phase titles
+  1.9rem w500, beat titles 1.35rem w500, body 0.95rem/1.55) + JetBrains Mono
+  (labels 0.72rem, tracking 0.08em, uppercase).
+- Radii 0/2/4px (`--radius-sm/md/lg`). Spacing rhythm 8/16/32. Flat on
+  purpose: no gradients, no shadows, no blur.
+- `#D95600` on the light surfaces is ~3.6:1 — fine for large UI/debug shapes
+  and the solid button, not for small text. Small text is ink or grey.
 
 ## Working style
 
-- **One concern per change.** Land the scroll/sticky behavior, then typography,
-  then a widget — don't refactor three things at once.
+- **One concern per change.** Land a layout change, then copy, then a widget —
+  don't refactor three things at once.
 - **Copy is data.** Edit `content.ts`, not components.
-- Match the existing scaffold's conventions before introducing new ones; read
-  before writing.
-- When building a widget, keep it a standalone component with its own state and
-  a clean bounded container, so it lifts cleanly into robcrock.com's LAB later.
+- Match the existing conventions before introducing new ones; read before
+  writing.
+- Keep each widget standalone (own state, bounded container, `stage` optional)
+  so it lifts cleanly into robcrock.com's LAB later.
+- Dev: the main checkout runs `next dev` on :3000 — verification servers use
+  another port (e.g. `pnpm dev -p 3101`).
 
 ## Reference: full phase/beat outline
 
-Phases: **00 Cold open** (pixel-hunt misery → "the chart is honest" → thesis) ·
-**01 Bars** (band targets, the `fill:none` gotcha, the Fitts timer, "invisible
-targets have no affordance") · **02 Lines** (trace-the-line misery, Steering Law
-aside, the bisector pivot, why tooltips vanish) · **03 Scatter** (tiny-dot
-failures, the Voronoi reveal, "spec and algorithm converged" aside, the radius
-clamp tradeoff) · **04 The turn** (heatmap needs no layer — proof by negation;
-the take-home test: *how much of my chart responds vs. how much should?*) ·
-**05 Close** (invisible target / unmissable feedback; takeaway: *the mark stays
-honest to the data, the target stays generous to the human*).
+**00 Cold open** (CHALLENGE hunt → "the chart is honest" → THESIS + reveal) ·
+**01 Bars** (3px bar → ROUND 1 drawn rects → band targets + `fill:none` gotcha
+→ ROUND 2 bands → Fitts's Law measured → "target the category" takeaway) ·
+**02 Lines** (trace the cold open's line → ROUND 1 five dates on the stroke →
+bisector pivot → ROUND 2 computed → Steering Law measured, #078 pays off →
+why tooltips vanish) · **03 Scatter** (twin-steal → ROUND 1 find five dots →
+Voronoi reveal → ROUND 2 nearest-point → misses hit zero, bubble cursor + WCAG
+aside → radius clamp tradeoff) · **04 The turn** (heatmap needs no layer; the
+take-home test) · **05 Close** (invisible target / unmissable feedback;
+takeaway: *the mark stays honest to the data, the target stays generous to the
+human*).
 
-The asides (Fitts, Steering Law, WCAG spacing exception, bubble cursor) are
-**payoffs delivered after the frustration demo, never the spine** — the felt
-experience leads, the named law rewards it.
+The named laws (Fitts, Steering, bubble cursor, WCAG spacing exception) are
+**payoffs delivered after the felt experience, never the spine** — the audience
+plays first, the law names what they just measured.
