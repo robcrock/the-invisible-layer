@@ -216,30 +216,28 @@ export function ScatterVoronoi({ stage }: { stage?: string }) {
             value={mode}
             onChange={switchMode}
           />
-          <AnimatePresence>
-            {mode === 'clamp' && (
-              <motion.label
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: DUR.base, ease: EASE_OUT }}
-                className="flex items-center gap-2 font-mono text-[0.65rem] text-muted-foreground"
-              >
-                <input
-                  type="range"
-                  min={24}
-                  max={140}
-                  value={radius}
-                  onChange={(e) => setRadius(Number(e.target.value))}
-                  className="h-1 w-20 cursor-ew-resize accent-accent"
-                  aria-label="Clamp radius"
-                />
-                <span className="tabular-nums text-foreground">
-                  r = {radius}px
-                </span>
-              </motion.label>
-            )}
-          </AnimatePresence>
+          {/* Fixed instrument panel: the radius control is always present
+              and simply inert until CLAMP engages — the header never
+              reflows between modes, and orange only when it does something. */}
+          <label
+            className={`flex items-center gap-1.5 font-mono text-[0.72rem] text-muted-foreground transition-opacity duration-150 ${
+              mode === 'clamp' ? '' : 'pointer-events-none opacity-40'
+            }`}
+          >
+            <input
+              type="range"
+              min={24}
+              max={140}
+              value={radius}
+              disabled={mode !== 'clamp'}
+              onChange={(e) => setRadius(Number(e.target.value))}
+              className="h-1 w-12 cursor-ew-resize accent-accent disabled:cursor-default disabled:accent-muted-foreground"
+              aria-label="Clamp radius"
+            />
+            <span className="min-w-[5ch] tabular-nums text-foreground">
+              r={radius}
+            </span>
+          </label>
           <DebugToggle on={debug} onChange={setDebug} />
         </>
       }

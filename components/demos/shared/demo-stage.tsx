@@ -23,7 +23,7 @@ export function DemoStage({
       data-demo-slot={slotId}
       className="w-full overflow-hidden rounded-lg border border-border bg-card"
     >
-      <div className="flex min-h-[2.5rem] flex-wrap items-center justify-between gap-x-3 gap-y-1.5 border-b border-border px-3 py-1.5">
+      <div className="flex min-h-[2.75rem] flex-wrap items-center justify-between gap-x-3 gap-y-1.5 border-b border-border px-3 py-1.5">
         <span className="font-mono text-[0.72rem] tracking-[0.08em] text-muted-foreground">
           {slotId}
         </span>

@@ -38,7 +38,7 @@ export function SegmentedControl<T extends string>({
             aria-checked={active}
             onClick={() => onChange(option.value)}
             whileTap={{ scale: 0.97 }}
-            className="relative rounded-[1px] px-2.5 py-1 font-mono text-[0.72rem] font-medium uppercase tracking-[0.08em]"
+            className="relative rounded-[1px] px-2 py-1 font-mono text-[0.72rem] font-medium uppercase tracking-[0.08em]"
           >
             {active && (
               <motion.span
