@@ -13,12 +13,22 @@ export const demoCopy = {
   },
   'cold-open-pixel-hunt': {
     hint: 'Read the value at the marked date.',
+    controls: {
+      start: 'START THE HUNT',
+      retry: 'HUNT AGAIN',
+    },
     stages: {
+      goal: 'One value. The tick marks date #078 — catch it on the line and hold it.',
       callout: 'target height: 2px',
     },
     results: {
+      target: 'target',
       hunting: 'hunting',
       onTarget: 'on the line',
+      drops: 'tooltip deaths',
+      value: '#078 = {value}',
+      framing:
+        'That took {time}s, and your pointer was on the line for {pct}% of it. The chart is fine. The target is the problem.',
     },
   },
   'bars-fitts': {
@@ -122,20 +132,23 @@ export const phases: Phase[] = [
     beats: [
       {
         id: 'cold-open-1',
-        kicker: 'LIVE DEMO',
+        kicker: 'CHALLENGE',
         title: 'Try to read one value',
-        body: 'A dense, real-world line chart. Hover it. Hunt the pixel. Everyone in the room has felt this.',
+        body: 'A dense line chart, 120 points, one marked date. Press start and read the value at the tick — the timer runs until you catch it. Everyone in the room has felt this.',
+        demoStage: 'hunt',
       },
       {
         id: 'cold-open-2',
         title: "The chart isn't broken — it's honest",
-        body: 'A small value is a short bar. A trend is a 2px line. The data decided your target sizes, and the data was rude about it.',
+        body: 'A small value is a short bar. A trend is a 2px line. The data decided your target sizes — and the clock you just watched is what that decision costs.',
+        demoStage: 'honest',
       },
       {
         id: 'cold-open-3',
         kicker: 'THESIS',
         title: 'The mark you see is not the target you touch',
-        body: 'Data integrity wants honest marks. Usability wants generous targets. The invisible layer is how a chart gets both.',
+        body: 'Data integrity wants honest marks. Usability wants generous targets. The invisible layer is how a chart gets both — and by the lines phase, this exact chart gets fixed.',
+        demoStage: 'reveal',
       },
     ],
   },
