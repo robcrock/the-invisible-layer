@@ -1,7 +1,6 @@
 import type { ComponentType } from 'react'
 import { PixelHunt } from './pixel-hunt'
-import { BarsBeforeAfter } from './bars-before-after'
-import { FittsTimer } from './fitts-timer'
+import { BarsFitts } from './bars-fitts'
 import { LineBeforeAfter } from './line-before-after'
 import { ScatterBeforeAfter } from './scatter-before-after'
 import { VoronoiReveal } from './voronoi-reveal'
@@ -14,8 +13,7 @@ export type DemoProps = { stage?: string }
 // placeholder, so widgets land one at a time without touching the deck.
 export const demoRegistry: Record<string, ComponentType<DemoProps>> = {
   'cold-open-pixel-hunt': PixelHunt,
-  'bars-before-after': BarsBeforeAfter,
-  'fitts-timer': FittsTimer,
+  'bars-fitts': BarsFitts,
   'line-before-after': LineBeforeAfter,
   'scatter-before-after': ScatterBeforeAfter,
   'voronoi-reveal': VoronoiReveal,
