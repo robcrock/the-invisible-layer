@@ -84,6 +84,14 @@ export function makeScatter(seed: number, n: number): ScatterPoint[] {
 // natural; same sequence both rounds keeps the comparison fair.
 export const LINE_TARGETS = [18, 44, 78, 97, 110] as const
 
+// The five dots of the scatter game, indices into makeScatter(23, 90).
+// Chosen (computed once, offline) so each is ≥14.7px from its nearest
+// neighbor — far from the planted twins at indices 83–88 — which keeps
+// round 2's nearest-point lookup honest: a click landing within ~7px of
+// the ringed dot can only resolve to the ringed dot. Order hops between
+// clusters so every acquisition is a real pointing movement.
+export const SCATTER_TARGETS = [3, 23, 21, 62, 38] as const
+
 // 8 static categories; index 3 is the rudely short bar (≈3px tall once scaled).
 export const BAR_DATA: { label: string; value: number }[] = [
   { label: 'A', value: 62 },
