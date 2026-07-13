@@ -27,21 +27,35 @@ export function PhaseSection({ phase }: { phase: Phase }) {
 
   return (
     <section className="relative" aria-labelledby={`phase-${phase.id}-title`}>
-      <PhaseHeader phase={phase} />
+      {/* Compact phase bar: pins at the viewport top for the whole phase;
+          the next section's bar pushes it out. */}
+      <div className="sticky top-0 z-30 border-b border-t border-border bg-background">
+        <div className="mx-auto flex h-14 max-w-6xl items-center gap-x-6 px-6 lg:px-10">
+          <span className="font-mono text-[0.72rem] uppercase tracking-[0.08em] text-muted-foreground">
+            {phase.number}
+          </span>
+          <h2
+            id={`phase-${phase.id}-title`}
+            className="font-sans text-[1.1rem] font-medium leading-none text-foreground"
+          >
+            {phase.title}
+          </h2>
+          <p className="ml-auto hidden truncate text-[0.85rem] leading-none text-muted-foreground md:block">
+            {phase.summary}
+          </p>
+        </div>
+      </div>
 
       {phase.demo ? (
         <>
-          {/* Mobile: the demo pins at the top; beats scroll beneath it. */}
-          <div className="sticky top-0 z-20 border-b border-border bg-background px-4 pb-3 pt-2 md:hidden">
-            <p className="mb-2 font-mono text-[0.72rem] uppercase tracking-[0.08em] text-muted-foreground">
-              {phase.number} · {phase.title}
-            </p>
+          {/* Mobile: the demo pins directly beneath the phase bar. */}
+          <div className="sticky top-14 z-20 border-b border-border bg-background px-4 pb-3 pt-2 md:hidden">
             {Demo ? <Demo stage={stage} /> : <DemoSlot id={phase.demo} />}
           </div>
 
           <div className="mx-auto max-w-6xl px-6 md:grid md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:gap-16 lg:px-10">
             {/* Narrative beats scroll on the left… */}
-            <div className="py-[10vh]">
+            <div className="pb-[10vh] pt-[6vh]">
               {phase.beats.map((beat, i) => (
                 <BeatBlock
                   key={beat.id}
@@ -52,9 +66,10 @@ export function PhaseSection({ phase }: { phase: Phase }) {
               ))}
             </div>
 
-            {/* …while the phase's demo stays pinned on the right. */}
+            {/* …while the phase's demo stays pinned on the right, centered
+                in the space below the phase bar. */}
             <div className="hidden md:block">
-              <div className="sticky top-0 flex h-screen flex-col justify-center gap-4">
+              <div className="sticky top-14 flex h-[calc(100vh-3.5rem)] flex-col justify-center gap-4">
                 {Demo ? <Demo stage={stage} /> : <DemoSlot id={phase.demo} />}
 
                 {/* Beat rail */}
@@ -76,7 +91,7 @@ export function PhaseSection({ phase }: { phase: Phase }) {
         </>
       ) : (
         /* Prose phases (no pinned demo): a single centered column. */
-        <div className="mx-auto max-w-2xl px-6 py-[10vh]">
+        <div className="mx-auto max-w-2xl px-6 pb-[10vh] pt-[6vh]">
           {phase.beats.map((beat, i) => (
             <BeatBlock
               key={beat.id}
@@ -88,28 +103,5 @@ export function PhaseSection({ phase }: { phase: Phase }) {
         </div>
       )}
     </section>
-  )
-}
-
-function PhaseHeader({ phase }: { phase: Phase }) {
-  return (
-    <div className="border-t border-border">
-      <div className="mx-auto max-w-6xl px-6 pb-12 pt-24 lg:px-10">
-        <p className="font-mono text-[0.72rem] uppercase tracking-[0.08em] text-muted-foreground">
-          {phase.number}
-        </p>
-        <div className="mt-3 flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2">
-          <h2
-            id={`phase-${phase.id}-title`}
-            className="text-balance font-sans text-[1.9rem] font-medium leading-tight text-foreground"
-          >
-            {phase.title}
-          </h2>
-          <p className="max-w-[44ch] text-pretty text-[0.95rem] leading-[1.55] text-muted-foreground">
-            {phase.summary}
-          </p>
-        </div>
-      </div>
-    </div>
   )
 }
