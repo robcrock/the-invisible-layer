@@ -131,6 +131,16 @@ export const demoCopy = {
       livePixels: 'live pixels: ~{pct}% of the plot',
     },
   },
+  'the-turn-heatmap': {
+    hint: 'Hover anywhere. Everything answers.',
+    stages: {
+      coverage: 'mark area = target area — the layer has nothing to add',
+    },
+    results: {
+      hovering: 'hovering',
+      livePixels: 'live pixels: 100% of the plot',
+    },
+  },
 } as const satisfies { shared: { debugLabel: string } } & Record<
   string,
   WidgetCopy | { debugLabel: string }
@@ -342,18 +352,21 @@ export const phases: Phase[] = [
     number: '04',
     title: 'The turn',
     summary: 'The chart that needs nothing.',
+    demo: 'the-turn-heatmap',
     beats: [
       {
         id: 'the-turn-1',
         kicker: 'COUNTEREXAMPLE',
         title: 'The heatmap counterexample',
-        body: 'Marks already fill the space. The invisible layer exists to close the gap between mark area and target area — when the gap is zero, it disappears.',
+        body: 'Marks already fill the space — hover anywhere and something answers. The invisible layer exists to close the gap between mark area and target area; when the gap is zero, it disappears.',
+        demoStage: 'hover',
       },
       {
         id: 'the-turn-2',
         kicker: 'IN YOUR WORK',
         title: 'The test you take home',
-        body: 'How much of my chart responds — versus how much should? Try it on a thin pie slice, a thin stacked-area layer, a sparkline. You can answer now — and you know how to put a clock on the difference.',
+        body: "How much of my chart responds — versus how much should? Toggle the targets here and nothing new appears: this chart scores 100%. Try the same test on a thin pie slice, a thin stacked-area layer, a sparkline. You can answer now — and you know how to put a clock on the difference.",
+        demoStage: 'coverage',
       },
     ],
   },

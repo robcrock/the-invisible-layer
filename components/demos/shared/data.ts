@@ -104,6 +104,33 @@ export const BAR_DATA: { label: string; value: number }[] = [
   { label: 'H', value: 30 },
 ]
 
+export type HeatCell = { id: string; col: number; row: number; value: number }
+
+// A smooth-ish seeded field for the counterexample heatmap: two low-
+// frequency waves plus a little noise, so it reads as real data while
+// every cell stays deterministic.
+export function makeHeatmap(seed: number, cols: number, rows: number): HeatCell[] {
+  const rand = mulberry32(seed)
+  const cells: HeatCell[] = []
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      let v =
+        50 +
+        28 * Math.sin(c / 2.2 + r / 1.7) +
+        16 * Math.sin(r / 1.1 - c / 3.8) +
+        (rand() - 0.5) * 22
+      v = Math.max(2, Math.min(98, v))
+      cells.push({
+        id: `${String.fromCharCode(65 + c)}${r + 1}`,
+        col: c,
+        row: r,
+        value: v,
+      })
+    }
+  }
+  return cells
+}
+
 // Column order for the Fitts rounds — same seed both rounds keeps the
 // comparison fair. Never repeats a column back-to-back, so every click
 // is a real pointing movement.

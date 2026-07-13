@@ -104,7 +104,7 @@ exactly once per *change* of stage value. Rules:
   `BAR_DATA`, `makeTargetSequence`, `LINE_TARGETS`, `SCATTER_TARGETS`). Module
   scope so SSR/client SVG is byte-identical.
 
-### The four widgets (id → file)
+### The widgets (id → file)
 
 | id | file | arc |
 |---|---|---|
@@ -112,6 +112,7 @@ exactly once per *change* of stage value. Rules:
 | `bars-fitts` | `bars-fitts.tsx` | Hover the honest chart → morph to rudely-short data → round 1 on drawn rects → band reveal (debug on) → round 2 on invisible bands → Fitts delta. Stages: `mark` / `game-1` / `band` / `game-2` / `results`. |
 | `lines-trace` | `lines-trace.tsx` | The cold open's dataset. Trace explore → round 1 click the stroke at five dates → bisector overlay reveal → round 2 click anywhere → Steering delta → hoverable data-anchored tooltip. Stages: `trace` / `game-1` / `computed` / `game-2` / `results` / `craft`. |
 | `scatter-voronoi` | `scatter-voronoi.tsx` | Twin-steal explore → round 1 find five ringed 3px dots (misses + wrong hits) → Voronoi tessellation reveal → round 2 via `delaunay.find` (misses impossible) → radius clamp coda with slider. Stages: `naive` / `game-1` / `voronoi` / `game-2` / `results` / `clamp`. |
+| `the-turn-heatmap` | `the-turn-heatmap.tsx` | The counterexample: hover-anywhere cells, and the debug reveal lands exactly on the marks — zero gap, "live pixels: 100%". No rounds on purpose: there is nothing to fix. Stages: `hover` / `coverage`. |
 
 ## Design (dieter-grid / Braun functional minimalism)
 
@@ -152,8 +153,9 @@ consolidate them).
 bisector pivot → ROUND 2 computed → Steering Law measured, #078 pays off →
 why tooltips vanish) · **03 Scatter** (twin-steal → ROUND 1 find five dots →
 Voronoi reveal → ROUND 2 nearest-point → misses hit zero, bubble cursor + WCAG
-aside → radius clamp tradeoff) · **04 The turn** (heatmap needs no layer; the
-take-home test) · **05 Close** (invisible target / unmissable feedback;
+aside → radius clamp tradeoff) · **04 The turn** (live heatmap counterexample — hover anywhere, debug reveals
+zero gap, 100% coverage; the take-home test) · **05 Close** (invisible target
+/ unmissable feedback;
 takeaway: *the mark stays honest to the data, the target stays generous to the
 human*).
 

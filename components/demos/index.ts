@@ -3,6 +3,7 @@ import { PixelHunt } from './pixel-hunt'
 import { BarsFitts } from './bars-fitts'
 import { LinesTrace } from './lines-trace'
 import { ScatterVoronoi } from './scatter-voronoi'
+import { TheTurnHeatmap } from './the-turn-heatmap'
 
 // Every widget accepts an optional scroll-driven stage; widgets with no
 // stage handling simply ignore it and stay fully presenter-controlled.
@@ -15,4 +16,5 @@ export const demoRegistry: Record<string, ComponentType<DemoProps>> = {
   'bars-fitts': BarsFitts,
   'lines-trace': LinesTrace,
   'scatter-voronoi': ScatterVoronoi,
+  'the-turn-heatmap': TheTurnHeatmap,
 }
