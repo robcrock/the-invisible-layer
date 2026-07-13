@@ -6,9 +6,13 @@ import { LineBeforeAfter } from './line-before-after'
 import { ScatterBeforeAfter } from './scatter-before-after'
 import { VoronoiReveal } from './voronoi-reveal'
 
-// Slot id → widget. Ids missing here fall back to the dashed DemoSlot
+// Every widget accepts an optional scroll-driven stage; widgets with no
+// stage handling simply ignore it and stay fully presenter-controlled.
+export type DemoProps = { stage?: string }
+
+// Demo id → widget. Ids missing here fall back to the dashed DemoSlot
 // placeholder, so widgets land one at a time without touching the deck.
-export const demoRegistry: Record<string, ComponentType> = {
+export const demoRegistry: Record<string, ComponentType<DemoProps>> = {
   'cold-open-pixel-hunt': PixelHunt,
   'bars-before-after': BarsBeforeAfter,
   'fitts-timer': FittsTimer,

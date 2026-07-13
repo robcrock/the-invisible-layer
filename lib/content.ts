@@ -100,7 +100,8 @@ export type Beat = {
   kicker?: string
   title: string
   body: string
-  demoSlot?: string
+  /** Stage the phase's pinned demo adopts when this beat activates. */
+  demoStage?: string
 }
 
 export type Phase = {
@@ -108,6 +109,8 @@ export type Phase = {
   number: string
   title: string
   summary: string
+  /** demoRegistry key — presence selects the pinned two-column layout. */
+  demo?: string
   beats: Beat[]
 }
 
@@ -117,13 +120,13 @@ export const phases: Phase[] = [
     number: '00',
     title: 'Cold open',
     summary: "The honest chart's misery.",
+    demo: 'cold-open-pixel-hunt',
     beats: [
       {
         id: 'cold-open-1',
         kicker: 'LIVE DEMO',
         title: 'Try to read one value',
         body: 'A dense, real-world line chart. Hover it. Hunt the pixel. Everyone in the room has felt this.',
-        demoSlot: 'cold-open-pixel-hunt',
       },
       {
         id: 'cold-open-2',
@@ -143,13 +146,13 @@ export const phases: Phase[] = [
     number: '01',
     title: 'Bars',
     summary: 'The idea at its simplest: target the category, not the rectangle.',
+    demo: 'bars-before-after',
     beats: [
       {
         id: 'bars-1',
         kicker: 'DEMO',
         title: 'The 3-pixel bar',
         body: 'One rudely short bar. Hover misery, quick and visceral.',
-        demoSlot: 'bars-before-after',
       },
       {
         id: 'bars-2',
@@ -167,7 +170,6 @@ export const phases: Phase[] = [
         kicker: 'MEASURED',
         title: "Fitts's Law, live",
         body: 'Click the 3px bar ten times, then the band ten times, timer running. You just saved half a second per hover — interactions can be quantified.',
-        demoSlot: 'fitts-timer',
       },
       {
         id: 'bars-5',
@@ -181,13 +183,13 @@ export const phases: Phase[] = [
     number: '02',
     title: 'Lines',
     summary: 'The target stops being drawn and becomes computed.',
+    demo: 'line-before-after',
     beats: [
       {
         id: 'lines-1',
         kicker: 'DEMO',
         title: 'Trace the 2px line',
         body: "There's no rectangle to draw this time. Just a thin path and a steady hand.",
-        demoSlot: 'line-before-after',
       },
       {
         id: 'lines-2',
@@ -214,20 +216,19 @@ export const phases: Phase[] = [
     number: '03',
     title: 'Scatter',
     summary: 'Geometry only an algorithm can produce.',
+    demo: 'scatter-before-after',
     beats: [
       {
         id: 'scatter-1',
         kicker: 'DEMO',
         title: 'Tiny dots, two failure modes',
         body: 'Misses — and worse, wrong-point hits.',
-        demoSlot: 'scatter-before-after',
       },
       {
         id: 'scatter-2',
         kicker: 'THE REVEAL',
         title: 'Every pixel belongs to somebody',
         body: 'Toggle the Voronoi overlay. d3.Delaunay.from(points), delaunay.find(x, y) — five lines.',
-        demoSlot: 'voronoi-reveal',
       },
       {
         id: 'scatter-3',

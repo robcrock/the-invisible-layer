@@ -21,7 +21,7 @@ export function DemoStage({
   return (
     <div
       data-demo-slot={slotId}
-      className="mt-8 w-full overflow-hidden rounded-md border border-border bg-card/40"
+      className="w-full overflow-hidden rounded-md border border-border bg-card/40"
     >
       <div className="flex min-h-[2.5rem] flex-wrap items-center justify-between gap-x-3 gap-y-1.5 border-b border-border px-3 py-1.5">
         <span className="font-mono text-xs text-accent">{slotId}</span>
