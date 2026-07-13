@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "deck",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["dev", "-p", "3101"],
+      "port": 3101
+    }
+  ]
+}

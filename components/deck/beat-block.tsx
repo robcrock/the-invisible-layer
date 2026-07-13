@@ -3,7 +3,6 @@
 import { useEffect, useRef } from 'react'
 import { motion, useInView, useReducedMotion } from 'motion/react'
 import type { Beat } from '@/lib/content'
-import { DemoSlot } from './demo-slot'
 
 type BeatBlockProps = {
   beat: Beat
@@ -23,7 +22,7 @@ export function BeatBlock({ beat, index, onActive }: BeatBlockProps) {
   return (
     <div
       ref={ref}
-      className="flex min-h-[70vh] items-center"
+      className="flex min-h-[80vh] items-center md:min-h-[85vh]"
       data-beat-id={beat.id}
     >
       <motion.div
@@ -34,29 +33,20 @@ export function BeatBlock({ beat, index, onActive }: BeatBlockProps) {
         className="w-full"
       >
         <motion.div
-          animate={{
-            opacity: isActive ? 1 : 0.25,
-            scale: reducedMotion ? 1 : isActive ? 1 : 0.98,
-            filter: reducedMotion
-              ? 'blur(0px)'
-              : isActive
-                ? 'blur(0px)'
-                : 'blur(2px)',
-          }}
+          animate={{ opacity: isActive ? 1 : 0.3 }}
           transition={{ duration: 0.4, ease: 'easeOut' }}
         >
           {beat.kicker && (
-            <p className="mb-3 font-mono text-xs font-medium tracking-[0.2em] text-accent">
+            <p className="mb-3 font-mono text-[0.72rem] font-medium uppercase tracking-[0.08em] text-muted-foreground">
               {beat.kicker}
             </p>
           )}
-          <h3 className="text-pretty font-sans text-[1.75rem] font-semibold leading-tight text-foreground">
+          <h3 className="text-pretty font-sans text-[1.35rem] font-medium leading-tight text-foreground">
             {beat.title}
           </h3>
-          <p className="mt-4 max-w-[55ch] text-pretty text-[1.05rem] leading-relaxed text-muted-foreground">
+          <p className="mt-4 max-w-[55ch] text-pretty text-[0.95rem] leading-[1.55] text-muted-foreground">
             {beat.body}
           </p>
-          {beat.demoSlot && <DemoSlot id={beat.demoSlot} />}
         </motion.div>
       </motion.div>
     </div>
