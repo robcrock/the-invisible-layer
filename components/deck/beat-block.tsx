@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react'
 import { motion, useInView, useReducedMotion } from 'motion/react'
 import type { Beat } from '@/lib/content'
 import { DemoSlot } from './demo-slot'
+import { demoRegistry } from '@/components/demos'
 
 type BeatBlockProps = {
   beat: Beat
@@ -15,6 +16,7 @@ export function BeatBlock({ beat, index, onActive }: BeatBlockProps) {
   const ref = useRef<HTMLDivElement>(null)
   const reducedMotion = useReducedMotion()
   const isActive = useInView(ref, { margin: '-40% 0px -40% 0px' })
+  const Demo = beat.demoSlot ? demoRegistry[beat.demoSlot] : undefined
 
   useEffect(() => {
     if (isActive) onActive(index)
@@ -56,7 +58,8 @@ export function BeatBlock({ beat, index, onActive }: BeatBlockProps) {
           <p className="mt-4 max-w-[55ch] text-pretty text-[1.05rem] leading-relaxed text-muted-foreground">
             {beat.body}
           </p>
-          {beat.demoSlot && <DemoSlot id={beat.demoSlot} />}
+          {beat.demoSlot &&
+            (Demo ? <Demo /> : <DemoSlot id={beat.demoSlot} />)}
         </motion.div>
       </motion.div>
     </div>

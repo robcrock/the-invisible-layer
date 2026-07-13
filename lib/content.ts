@@ -1,3 +1,100 @@
+export type WidgetCopy = {
+  hint?: string
+  controls?: Record<string, string>
+  stages?: Record<string, string>
+  results?: Record<string, string>
+}
+
+// Every prompt, button label, stage caption, and result template the demo
+// widgets render. Components interpolate numbers; they own zero prose.
+export const demoCopy = {
+  shared: {
+    debugLabel: 'HIT TARGETS',
+  },
+  'cold-open-pixel-hunt': {
+    hint: 'Read the value at the marked date.',
+    stages: {
+      callout: 'target height: 2px',
+    },
+    results: {
+      hunting: 'hunting',
+      onTarget: 'on the line',
+    },
+  },
+  'bars-before-after': {
+    hint: 'Hover the shortest bar.',
+    controls: {
+      mark: 'MARK',
+      band: 'BAND',
+    },
+  },
+  'fitts-timer': {
+    hint: 'Click the highlighted target 10 times. Timer runs.',
+    controls: {
+      start: 'START ROUND 1',
+      continue: 'START ROUND 2',
+      reset: 'RESET',
+    },
+    stages: {
+      round1: 'ROUND 1 · the drawn bar',
+      round2: 'ROUND 2 · the invisible band',
+      interstitial: 'Round 2: same ten clicks — band targets.',
+      capped: 'Called on time. You get the point.',
+    },
+    results: {
+      round1: 'round 1 · bar',
+      round2: 'round 2 · band',
+      total: 'total',
+      perClick: 'avg / click',
+      misses: 'misses',
+      delta: '≈{delta}ms saved per click',
+      framing:
+        "Fitts's Law: acquisition time grows as targets shrink. You just measured it.",
+    },
+  },
+  'line-before-after': {
+    hint: 'Keep the tooltip alive across the line.',
+    controls: {
+      trace: 'TRACE',
+      computed: 'COMPUTED',
+    },
+    stages: {
+      trace: 'the target is the 2px stroke',
+      computed: 'the target is computed, not drawn',
+    },
+  },
+  'scatter-before-after': {
+    hint: 'Find and hover {id}.',
+    stages: {
+      found: 'got it — eventually',
+      tease: 'Every other pixel is dead. Next: give every pixel an owner.',
+    },
+    results: {
+      hovering: 'hovering',
+      target: 'target',
+      misses: 'dead-space misses',
+      wrongHits: 'wrong-point hits',
+      livePixels: 'live pixels: ~{pct}% of the plot',
+    },
+  },
+  'voronoi-reveal': {
+    hint: 'Hover anywhere.',
+    controls: {
+      naive: 'NAIVE',
+      nearest: 'NEAREST',
+      clamp: 'CLAMP',
+    },
+    stages: {
+      naive: 'per-dot hitboxes — you remember this',
+      nearest: 'delaunay.find(x, y) — every pixel belongs to somebody',
+      clamp: 'quadtree.find(x, y, r) — dead zones vs mis-triggers. No universal answer.',
+    },
+  },
+} as const satisfies { shared: { debugLabel: string } } & Record<
+  string,
+  WidgetCopy | { debugLabel: string }
+>
+
 export type Beat = {
   id: string
   kicker?: string
