@@ -33,3 +33,108 @@
 [  395983ms] [LOG] [HMR] connected @ http://localhost:3101/_next/static/chunks/0oo4_next_dist_06o6od4._.js:2477
 [  403286ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3101/_next/static/chunks/0oo4_next_dist_06o6od4._.js:2477
 [  403329ms] [LOG] [Fast Refresh] done in 36ms @ http://localhost:3101/_next/static/chunks/0oo4_next_dist_06o6od4._.js:2477
+[  552961ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3101/_next/static/chunks/0oo4_next_dist_06o6od4._.js:2477
+[  553006ms] [LOG] [Fast Refresh] done in 77ms @ http://localhost:3101/_next/static/chunks/0oo4_next_dist_06o6od4._.js:2477
+[  605800ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3101/_next/static/chunks/0oo4_next_dist_06o6od4._.js:2477
+[  605829ms] [LOG] [Fast Refresh] done in 100ms @ http://localhost:3101/_next/static/chunks/0oo4_next_dist_06o6od4._.js:2477
+[  618517ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3101/_next/static/chunks/0oo4_next_dist_06o6od4._.js:2477
+[  618580ms] [LOG] [Fast Refresh] done in 86ms @ http://localhost:3101/_next/static/chunks/0oo4_next_dist_06o6od4._.js:2477
+[  618614ms] TypeError: Cannot read properties of undefined (reading 'controls')
+    at LineBeforeAfter (http://localhost:3101/_next/static/chunks/_claude_worktrees_scrollytelling-presentation-plan-82c624_06zdlii._.js:2779:41)
+    at Object.react_stack_bottom_frame (http://localhost:3101/_next/static/chunks/0oo4_next_dist_compiled_react-dom_118opxq._.js:15037:24)
+    at renderWithHooks (http://localhost:3101/_next/static/chunks/0oo4_next_dist_compiled_react-dom_118opxq._.js:4620:24)
+    at updateFunctionComponent (http://localhost:3101/_next/static/chunks/0oo4_next_dist_compiled_react-dom_118opxq._.js:6081:21)
+    at beginWork (http://localhost:3101/_next/static/chunks/0oo4_next_dist_compiled_react-dom_118opxq._.js:6691:24)
+    at runWithFiberInDEV (http://localhost:3101/_next/static/chunks/0oo4_next_dist_compiled_react-dom_118opxq._.js:965:74)
+    at performUnitOfWork (http://localhost:3101/_next/static/chunks/0oo4_next_dist_compiled_react-dom_118opxq._.js:9555:97)
+    at workLoopSync (http://localhost:3101/_next/static/chunks/0oo4_next_dist_compiled_react-dom_118opxq._.js:9449:40)
+    at renderRootSync (http://localhost:3101/_next/static/chunks/0oo4_next_dist_compiled_react-dom_118opxq._.js:9433:13)
+    at performWorkOnRoot (http://localhost:3101/_next/static/chunks/0oo4_next_dist_compiled_react-dom_118opxq._.js:9061:186)
+    at performSyncWorkOnRoot (http://localhost:3101/_next/static/chunks/0oo4_next_dist_compiled_react-dom_118opxq._.js:10263:9)
+    at flushSyncWorkAcrossRoots_impl (http://localhost:3101/_next/static/chunks/0oo4_next_dist_compiled_react-dom_118opxq._.js:10179:316)
+    at processRootScheduleInMicrotask (http://localhost:3101/_next/static/chunks/0oo4_next_dist_compiled_react-dom_118opxq._.js:10200:106)
+    at http://localhost:3101/_next/static/chunks/0oo4_next_dist_compiled_react-dom_118opxq._.js:10274:158
+[  630367ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3101/_next/static/chunks/0oo4_next_dist_06o6od4._.js:2477
+[  630403ms] [WARNING] [Fast Refresh] performing full reload because your application had an unrecoverable error @ http://localhost:3101/_next/static/chunks/0oo4_next_dist_06o6od4._.js:2477
+[  630502ms] TypeError: Cannot read properties of undefined (reading 'controls')
+    at LineBeforeAfter (http://localhost:3101/_next/static/chunks/_claude_worktrees_scrollytelling-presentation-plan-82c624_06zdlii._.js:2779:41)
+    at Object.react_stack_bottom_frame (http://localhost:3101/_next/static/chunks/0oo4_next_dist_compiled_react-dom_118opxq._.js:15037:24)
+    at renderWithHooks (http://localhost:3101/_next/static/chunks/0oo4_next_dist_compiled_react-dom_118opxq._.js:4620:24)
+    at updateFunctionComponent (http://localhost:3101/_next/static/chunks/0oo4_next_dist_compiled_react-dom_118opxq._.js:6081:21)
+    at beginWork (http://localhost:3101/_next/static/chunks/0oo4_next_dist_compiled_react-dom_118opxq._.js:6691:24)
+    at runWithFiberInDEV (http://localhost:3101/_next/static/chunks/0oo4_next_dist_compiled_react-dom_118opxq._.js:965:74)
+    at performUnitOfWork (http://localhost:3101/_next/static/chunks/0oo4_next_dist_compiled_react-dom_118opxq._.js:9555:97)
+    at workLoopSync (http://localhost:3101/_next/static/chunks/0oo4_next_dist_compiled_react-dom_118opxq._.js:9449:40)
+    at renderRootSync (http://localhost:3101/_next/static/chunks/0oo4_next_dist_compiled_react-dom_118opxq._.js:9433:13)
+    at performWorkOnRoot (http://localhost:3101/_next/static/chunks/0oo4_next_dist_compiled_react-dom_118opxq._.js:9098:47)
+    at performSyncWorkOnRoot (http://localhost:3101/_next/static/chunks/0oo4_next_dist_compiled_react-dom_118opxq._.js:10263:9)
+    at flushSyncWorkAcrossRoots_impl (http://localhost:3101/_next/static/chunks/0oo4_next_dist_compiled_react-dom_118opxq._.js:10179:316)
+    at flushSyncWork$1 (http://localhost:3101/_next/static/chunks/0oo4_next_dist_compiled_react-dom_118opxq._.js:9230:86)
+    at Object.scheduleRefresh (http://localhost:3101/_next/static/chunks/0oo4_next_dist_compiled_react-dom_118opxq._.js:299:13)
+    at http://localhost:3101/_next/static/chunks/0oo4_next_dist_compiled_0v4j6._._.js:391:33
+    at Set.forEach (<anonymous>)
+    at Object.performReactRefresh (http://localhost:3101/_next/static/chunks/0oo4_next_dist_compiled_0v4j6._._.js:384:38)
+    at applyUpdate (http://localhost:3101/_next/static/chunks/0oo4_next_dist_compiled_0v4j6._._.js:878:31)
+    at http://localhost:3101/_next/static/chunks/0oo4_next_dist_compiled_0v4j6._._.js:886:13
+[  630478ms] [LOG] [Fast Refresh] done in 89ms @ http://localhost:3101/_next/static/chunks/0oo4_next_dist_06o6od4._.js:2477
+[  630653ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3101/_next/static/chunks/0oo4_next_dist_06o6od4._.js:2477
+[  630674ms] [LOG] [HMR] connected @ http://localhost:3101/_next/static/chunks/0oo4_next_dist_06o6od4._.js:2477
+[  633631ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3101/_next/static/chunks/0oo4_next_dist_06o6od4._.js:2477
+[  633726ms] [WARNING] [Fast Refresh] performing full reload
+
+Fast Refresh will perform a full reload when you edit a file that's imported by modules outside of the React rendering tree.
+You might have a file which exports a React component but also exports a value that is imported by a non-React component file.
+Consider migrating the non-React component export to a separate file and importing it into both files.
+
+It is also possible the parent component of the component you edited is a class component, which disables Fast Refresh.
+Fast Refresh requires at least one parent function component in your React tree. @ http://localhost:3101/_next/static/chunks/0oo4_next_dist_06o6od4._.js:2477
+[  633728ms] [LOG] [Fast Refresh] done in 162ms @ http://localhost:3101/_next/static/chunks/0oo4_next_dist_06o6od4._.js:2477
+[  633861ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3101/_next/static/chunks/0oo4_next_dist_06o6od4._.js:2477
+[  634098ms] [LOG] [Fast Refresh] done in 338ms @ http://localhost:3101/_next/static/chunks/0oo4_next_dist_06o6od4._.js:2477
+[  634205ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3101/_next/static/chunks/0oo4_next_dist_06o6od4._.js:2477
+[  634289ms] [LOG] [Fast Refresh] done in 185ms @ http://localhost:3101/_next/static/chunks/0oo4_next_dist_06o6od4._.js:2477
+[  634303ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3101/:0
+[  634321ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3101/_next/static/chunks/0oo4_next_dist_06o6od4._.js:2477
+[  634330ms] [LOG] [HMR] connected @ http://localhost:3101/_next/static/chunks/0oo4_next_dist_06o6od4._.js:2477
+[  634442ms] ReferenceError: LineBeforeAfter is not defined
+    at module evaluation (http://localhost:3101/_next/static/chunks/_claude_worktrees_scrollytelling-presentation-plan-82c624_0tid9kx._.js:3525:26)
+    at http://localhost:3101/_next/static/chunks/turbopack-_claude_worktrees_scrollytelling-presentation-plan-82c624_0nj609_._.js:1307:27
+    at runModuleExecutionHooks (http://localhost:3101/_next/static/chunks/turbopack-_claude_worktrees_scrollytelling-presentation-plan-82c624_0nj609_._.js:1636:13)
+    at instantiateModuleShared (http://localhost:3101/_next/static/chunks/turbopack-_claude_worktrees_scrollytelling-presentation-plan-82c624_0nj609_._.js:1305:9)
+    at instantiateModule (http://localhost:3101/_next/static/chunks/turbopack-_claude_worktrees_scrollytelling-presentation-plan-82c624_0nj609_._.js:1621:12)
+    at getOrInstantiateModuleFromParent (http://localhost:3101/_next/static/chunks/turbopack-_claude_worktrees_scrollytelling-presentation-plan-82c624_0nj609_._.js:1604:12)
+    at DevContext.esmImport [as i] (http://localhost:3101/_next/static/chunks/turbopack-_claude_worktrees_scrollytelling-presentation-plan-82c624_0nj609_._.js:278:20)
+    at module evaluation (http://localhost:3101/_next/static/chunks/_claude_worktrees_scrollytelling-presentation-plan-82c624_0tid9kx._.js:3715:234)
+    at http://localhost:3101/_next/static/chunks/turbopack-_claude_worktrees_scrollytelling-presentation-plan-82c624_0nj609_._.js:1307:27
+    at runModuleExecutionHooks (http://localhost:3101/_next/static/chunks/turbopack-_claude_worktrees_scrollytelling-presentation-plan-82c624_0nj609_._.js:1636:13)
+    at instantiateModuleShared (http://localhost:3101/_next/static/chunks/turbopack-_claude_worktrees_scrollytelling-presentation-plan-82c624_0nj609_._.js:1305:9)
+    at instantiateModule (http://localhost:3101/_next/static/chunks/turbopack-_claude_worktrees_scrollytelling-presentation-plan-82c624_0nj609_._.js:1621:12)
+    at getOrInstantiateModuleFromParent (http://localhost:3101/_next/static/chunks/turbopack-_claude_worktrees_scrollytelling-presentation-plan-82c624_0nj609_._.js:1604:12)
+    at DevContext.commonJsRequire [as r] (http://localhost:3101/_next/static/chunks/turbopack-_claude_worktrees_scrollytelling-presentation-plan-82c624_0nj609_._.js:299:12)
+    at requireModule (http://localhost:3101/_next/static/chunks/0oo4_next_dist_compiled_react-server-dom-turbopack_0dt_0rt._.js:95:84)
+    at initializeModuleChunk (http://localhost:3101/_next/static/chunks/0oo4_next_dist_compiled_react-server-dom-turbopack_0dt_0rt._.js:1110:25)
+    at readChunk (http://localhost:3101/_next/static/chunks/0oo4_next_dist_compiled_react-server-dom-turbopack_0dt_0rt._.js:846:17)
+    at Object.react_stack_bottom_frame (http://localhost:3101/_next/static/chunks/0oo4_next_dist_compiled_react-dom_118opxq._.js:15101:20)
+    at resolveLazy (http://localhost:3101/_next/static/chunks/0oo4_next_dist_compiled_react-dom_118opxq._.js:3866:20)
+    at beginWork (http://localhost:3101/_next/static/chunks/0oo4_next_dist_compiled_react-dom_118opxq._.js:6665:77)
+    at runWithFiberInDEV (http://localhost:3101/_next/static/chunks/0oo4_next_dist_compiled_react-dom_118opxq._.js:965:74)
+    at performUnitOfWork (http://localhost:3101/_next/static/chunks/0oo4_next_dist_compiled_react-dom_118opxq._.js:9555:97)
+    at workLoopConcurrentByScheduler (http://localhost:3101/_next/static/chunks/0oo4_next_dist_compiled_react-dom_118opxq._.js:9551:58)
+    at renderRootConcurrent (http://localhost:3101/_next/static/chunks/0oo4_next_dist_compiled_react-dom_118opxq._.js:9534:71)
+    at performWorkOnRoot (http://localhost:3101/_next/static/chunks/0oo4_next_dist_compiled_react-dom_118opxq._.js:9061:150)
+    at performWorkOnRootViaSchedulerTask (http://localhost:3101/_next/static/chunks/0oo4_next_dist_compiled_react-dom_118opxq._.js:10255:9)
+    at MessagePort.performWorkUntilDeadline (http://localhost:3101/_next/static/chunks/0oo4_next_dist_compiled_0v4j6._._.js:2647:64)
+[  634446ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3101/favicon.ico:0
+[  635925ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3101/_next/static/chunks/0oo4_next_dist_06o6od4._.js:2477
+[  635941ms] [WARNING] [Fast Refresh] performing full reload
+
+Fast Refresh will perform a full reload when you edit a file that's imported by modules outside of the React rendering tree.
+You might have a file which exports a React component but also exports a value that is imported by a non-React component file.
+Consider migrating the non-React component export to a separate file and importing it into both files.
+
+It is also possible the parent component of the component you edited is a class component, which disables Fast Refresh.
+Fast Refresh requires at least one parent function component in your React tree. @ http://localhost:3101/_next/static/chunks/0oo4_next_dist_06o6od4._.js:2477
+[  635942ms] [WARNING] [Fast Refresh] performing full reload because your application had an unrecoverable error @ http://localhost:3101/_next/static/chunks/0oo4_next_dist_06o6od4._.js:2477
+[  636004ms] [LOG] [Fast Refresh] done in 78ms @ http://localhost:3101/_next/static/chunks/0oo4_next_dist_06o6od4._.js:2477
+[  636212ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3101/_next/static/chunks/0oo4_next_dist_06o6od4._.js:2477
+[  636225ms] [LOG] [HMR] connected @ http://localhost:3101/_next/static/chunks/0oo4_next_dist_06o6od4._.js:2477

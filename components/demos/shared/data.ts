@@ -78,6 +78,12 @@ export function makeScatter(seed: number, n: number): ScatterPoint[] {
   return pts.map((p, i) => ({ ...p, id: `p-${i + 1}` }))
 }
 
+// The five dates of the lines game, indices into makeSeries(7, 120) —
+// the cold-open dataset. 78 is the cold open's marked date; the lines
+// phase pays that setup off. Ascending order keeps the reading motion
+// natural; same sequence both rounds keeps the comparison fair.
+export const LINE_TARGETS = [18, 44, 78, 97, 110] as const
+
 // 8 static categories; index 3 is the rudely short bar (≈3px tall once scaled).
 export const BAR_DATA: { label: string; value: number }[] = [
   { label: 'A', value: 62 },

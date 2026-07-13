@@ -1,7 +1,7 @@
 import type { ComponentType } from 'react'
 import { PixelHunt } from './pixel-hunt'
 import { BarsFitts } from './bars-fitts'
-import { LineBeforeAfter } from './line-before-after'
+import { LinesTrace } from './lines-trace'
 import { ScatterBeforeAfter } from './scatter-before-after'
 import { VoronoiReveal } from './voronoi-reveal'
 
@@ -14,7 +14,7 @@ export type DemoProps = { stage?: string }
 export const demoRegistry: Record<string, ComponentType<DemoProps>> = {
   'cold-open-pixel-hunt': PixelHunt,
   'bars-fitts': BarsFitts,
-  'line-before-after': LineBeforeAfter,
+  'lines-trace': LinesTrace,
   'scatter-before-after': ScatterBeforeAfter,
   'voronoi-reveal': VoronoiReveal,
 }
