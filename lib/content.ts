@@ -345,13 +345,15 @@ export const phases: Phase[] = [
     beats: [
       {
         id: 'the-turn-1',
+        kicker: 'COUNTEREXAMPLE',
         title: 'The heatmap counterexample',
         body: 'Marks already fill the space. The invisible layer exists to close the gap between mark area and target area — when the gap is zero, it disappears.',
       },
       {
         id: 'the-turn-2',
+        kicker: 'IN YOUR WORK',
         title: 'The test you take home',
-        body: 'How much of my chart responds — versus how much should? Try it on a thin pie slice. A thin stacked-area layer. You can answer now.',
+        body: 'How much of my chart responds — versus how much should? Try it on a thin pie slice, a thin stacked-area layer, a sparkline. You can answer now — and you know how to put a clock on the difference.',
       },
     ],
   },
@@ -364,7 +366,7 @@ export const phases: Phase[] = [
       {
         id: 'close-1',
         title: 'Invisible target, unmissable feedback',
-        body: 'You hid the layer, so the response has to carry the whole conversation.',
+        body: 'You hid the layer, so the response has to carry the whole conversation — the instant highlight, the anchored tooltip, the flash on every hit you just made. Feedback is what makes an invisible target trustable.',
       },
       {
         id: 'close-2',
