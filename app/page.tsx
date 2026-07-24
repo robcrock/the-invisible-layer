@@ -1,13 +1,18 @@
 import { phases } from '@/lib/content'
 import { ProgressBar } from '@/components/deck/progress-bar'
 import { PhaseSection } from '@/components/deck/phase-section'
+import { PhaseStepper } from '@/components/deck/phase-stepper'
 
 export default function Page() {
   return (
     <main>
       <ProgressBar />
+      <PhaseStepper phases={phases} />
 
-      <header className="flex min-h-[60vh] flex-col items-center justify-center px-6 text-center">
+      <header
+        id="hero"
+        className="flex min-h-dvh flex-col items-center justify-center px-6 text-center"
+      >
         <p className="font-mono text-[0.72rem] uppercase tracking-[0.08em] text-muted-foreground">
           A talk on interaction design in data visualization
         </p>
@@ -15,8 +20,7 @@ export default function Page() {
           The Invisible Layer
         </h1>
         <p className="mt-5 max-w-[48ch] text-pretty text-base leading-[1.55] text-muted-foreground">
-          Honest marks, generous targets — and the transparent geometry in
-          between.
+          Making data easier to grasp.
         </p>
         <p
           className="mt-16 font-mono text-[0.72rem] text-muted-foreground"

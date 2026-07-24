@@ -26,7 +26,11 @@ export function PhaseSection({ phase }: { phase: Phase }) {
   const Demo = phase.demo ? demoRegistry[phase.demo] : undefined
 
   return (
-    <section className="relative" aria-labelledby={`phase-${phase.id}-title`}>
+    <section
+      id={`phase-${phase.id}`}
+      className="relative"
+      aria-labelledby={`phase-${phase.id}-title`}
+    >
       {/* Compact phase bar: pins at the viewport top for the whole phase;
           the next section's bar pushes it out. */}
       <div className="sticky top-0 z-30 border-b border-t border-border bg-background">

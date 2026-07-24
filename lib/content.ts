@@ -169,7 +169,7 @@ export const phases: Phase[] = [
   {
     id: 'cold-open',
     number: '00',
-    title: 'Cold open',
+    title: 'Preamble',
     summary: "The honest chart's misery.",
     demo: 'cold-open-pixel-hunt',
     beats: [
@@ -241,7 +241,7 @@ export const phases: Phase[] = [
         id: 'bars-6',
         kicker: 'IN YOUR WORK',
         title: 'Target the category, not the rectangle',
-        body: 'Any categorical chart with small values qualifies: KPI bars, grouped comparisons, sparkbars in tables. And because invisible targets have no affordance, the response must be instant and unmistakable — feedback carries the other half of the layer.',
+        body: 'Any categorical chart with small values qualifies: KPI bars, grouped comparisons, sparkbars in tables. And because invisible targets have no affordance, the response must be instant and unmistakable; feedback carries the other half of the layer.',
       },
     ],
   },
@@ -284,7 +284,7 @@ export const phases: Phase[] = [
         id: 'lines-5',
         kicker: 'MEASURED',
         title: 'The target became computed',
-        body: 'Read the delta. Missing the line is now geometrically impossible, and #078 — the date that opened this talk — took a fraction of the time.',
+        body: 'Read the delta. Missing the line is now geometrically impossible, and #078, the date that opened this talk, took a fraction of the time.',
         demoStage: 'results',
       },
       {
@@ -321,7 +321,7 @@ export const phases: Phase[] = [
         id: 'scatter-3',
         kicker: 'THE FIX',
         title: 'Every pixel belongs to somebody',
-        body: 'd3.Delaunay.from(points), delaunay.find(x, y) — five lines. The overlay is the proof: a Voronoi tessellation hands every pixel to exactly one point. This is geometry you could never draw by hand.',
+        body: 'd3.Delaunay.from(points), delaunay.find(x, y). Five lines. The overlay is the proof: a Voronoi tessellation hands every pixel to exactly one point. This is geometry you could never draw by hand.',
         demoStage: 'voronoi',
       },
       {
@@ -335,7 +335,7 @@ export const phases: Phase[] = [
         id: 'scatter-5',
         kicker: 'MEASURED',
         title: 'Misses: impossible',
-        body: "The delta is nice; the zero is the headline. Researchers proved this in 2005 as the bubble cursor, and WCAG's target-size spacing exception is — squint at it — the same geometric argument.",
+        body: "The delta is nice; the zero is the headline. Researchers proved this in 2005 as the bubble cursor, and WCAG's target-size spacing exception is, if you squint, the same geometric argument.",
         demoStage: 'results',
       },
       {
@@ -350,7 +350,7 @@ export const phases: Phase[] = [
   {
     id: 'the-turn',
     number: '04',
-    title: 'The turn',
+    title: 'The counter argument',
     summary: 'The chart that needs nothing.',
     demo: 'the-turn-heatmap',
     beats: [
@@ -358,7 +358,7 @@ export const phases: Phase[] = [
         id: 'the-turn-1',
         kicker: 'COUNTEREXAMPLE',
         title: 'The heatmap counterexample',
-        body: 'Marks already fill the space — hover anywhere and something answers. The invisible layer exists to close the gap between mark area and target area; when the gap is zero, it disappears.',
+        body: 'Marks already fill the space; hover anywhere and something answers. The invisible layer exists to close the gap between mark area and target area, and when the gap is zero, it disappears.',
         demoStage: 'hover',
       },
       {
@@ -379,7 +379,7 @@ export const phases: Phase[] = [
       {
         id: 'close-1',
         title: 'Invisible target, unmissable feedback',
-        body: 'You hid the layer, so the response has to carry the whole conversation — the instant highlight, the anchored tooltip, the flash on every hit you just made. Feedback is what makes an invisible target trustable.',
+        body: 'You hid the layer, so the response has to carry the whole conversation: the instant highlight, the anchored tooltip, the flash on every hit you just made. Feedback is what makes an invisible target trustable.',
       },
       {
         id: 'close-2',
