@@ -37,14 +37,14 @@ export function BeatBlock({ beat, index, onActive }: BeatBlockProps) {
           transition={{ duration: 0.4, ease: 'easeOut' }}
         >
           {beat.kicker && (
-            <p className="mb-3 font-mono text-[0.72rem] font-medium uppercase tracking-[0.08em] text-muted-foreground">
+            <p className="mb-5 font-mono text-[0.78rem] font-medium uppercase tracking-[0.16em] text-muted-foreground">
               {beat.kicker}
             </p>
           )}
-          <h3 className="text-pretty font-sans text-[1.35rem] font-medium leading-tight text-foreground">
+          <h3 className="text-pretty font-sans text-[clamp(2rem,3.2vw,2.75rem)] font-medium leading-[1.08] tracking-[-0.025em] text-foreground">
             {beat.title}
           </h3>
-          <p className="mt-4 max-w-[55ch] text-pretty text-[0.95rem] leading-[1.55] text-muted-foreground">
+          <p className="mt-6 max-w-[40ch] text-pretty text-[1.2rem] leading-[1.6] text-foreground/70">
             {beat.body}
           </p>
         </motion.div>

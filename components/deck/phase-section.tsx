@@ -29,27 +29,8 @@ export function PhaseSection({ phase }: { phase: Phase }) {
     <section
       id={`phase-${phase.id}`}
       className="relative"
-      aria-labelledby={`phase-${phase.id}-title`}
+      aria-label={`${phase.number} — ${phase.title}`}
     >
-      {/* Compact phase bar: pins at the viewport top for the whole phase;
-          the next section's bar pushes it out. */}
-      <div className="sticky top-0 z-30 border-b border-t border-border bg-background">
-        <div className="mx-auto flex h-14 max-w-6xl items-center gap-x-6 px-6 lg:px-10">
-          <span className="font-mono text-[0.72rem] uppercase tracking-[0.08em] text-muted-foreground">
-            {phase.number}
-          </span>
-          <h2
-            id={`phase-${phase.id}-title`}
-            className="font-sans text-[1.1rem] font-medium leading-none text-foreground"
-          >
-            {phase.title}
-          </h2>
-          <p className="ml-auto hidden truncate text-[0.85rem] leading-none text-muted-foreground md:block">
-            {phase.summary}
-          </p>
-        </div>
-      </div>
-
       {phase.demo ? (
         <>
           {/* Mobile: the demo pins directly beneath the phase bar. */}
@@ -73,22 +54,8 @@ export function PhaseSection({ phase }: { phase: Phase }) {
             {/* …while the phase's demo stays pinned on the right, centered
                 in the space below the phase bar. */}
             <div className="hidden md:block">
-              <div className="sticky top-14 flex h-[calc(100vh-3.5rem)] flex-col justify-center gap-4">
+              <div className="sticky top-14 flex h-[calc(100vh-3.5rem)] flex-col justify-center">
                 {Demo ? <Demo stage={stage} /> : <DemoSlot id={phase.demo} />}
-
-                {/* Beat rail */}
-                <div className="flex items-center gap-2" aria-hidden="true">
-                  {phase.beats.map((beat, i) => (
-                    <span
-                      key={beat.id}
-                      className={`h-1.5 w-1.5 transition-colors duration-300 ${
-                        i === activeIndex
-                          ? 'bg-accent'
-                          : 'bg-muted-foreground/30'
-                      }`}
-                    />
-                  ))}
-                </div>
               </div>
             </div>
           </div>
