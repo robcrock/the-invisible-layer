@@ -1,33 +1,46 @@
 import { phases } from '@/lib/content'
-import { ProgressBar } from '@/components/deck/progress-bar'
+import { DeckHeader } from '@/components/deck/deck-header'
 import { PhaseSection } from '@/components/deck/phase-section'
-import { PhaseStepper } from '@/components/deck/phase-stepper'
 
 export default function Page() {
   return (
     <main>
-      <ProgressBar />
-      <PhaseStepper phases={phases} />
+      <DeckHeader phases={phases} />
 
-      <header
-        id="hero"
-        className="flex min-h-dvh flex-col items-center justify-center px-6 text-center"
-      >
-        <p className="font-mono text-[0.72rem] uppercase tracking-[0.08em] text-muted-foreground">
-          A talk on interaction design in data visualization
-        </p>
-        <h1 className="mt-6 text-balance font-sans text-[clamp(2.5rem,4.5vw,3.5rem)] font-medium leading-[1.05] tracking-[-0.02em] text-foreground">
-          The Invisible Layer
-        </h1>
-        <p className="mt-5 max-w-[48ch] text-pretty text-base leading-[1.55] text-muted-foreground">
-          Making data easier to grasp.
-        </p>
-        <p
-          className="mt-16 font-mono text-[0.72rem] text-muted-foreground"
-          aria-hidden="true"
+      {/* Cover slide — its header is the shared DeckHeader above, which morphs
+          into the phase nav as you scroll. The body fills the rest of the
+          viewport beneath that 3.5rem bar. */}
+      <header id="hero" className="flex min-h-[calc(100dvh-3.5rem)] flex-col">
+        <div className="mx-auto flex w-full max-w-6xl flex-1 flex-col justify-between px-6 py-14 sm:py-16 lg:px-10 lg:py-20">
+          <div className="flex flex-col items-start gap-6 sm:gap-8">
+          <div className="h-[5px] w-16 bg-accent" aria-hidden="true" />
+          <h1 className="font-sans text-[clamp(2.75rem,9vw,8.25rem)] font-medium leading-[0.92] tracking-[-0.035em] text-foreground">
+            The Invisible
+            <br />
+            Layer
+          </h1>
+          <p className="max-w-[45ch] text-pretty text-[clamp(1.1rem,1.7vw,1.7rem)] leading-[1.4] tracking-[-0.01em] text-foreground/70">
+            The mark you see is not the target you touch. Honest marks keep
+            charts truthful; generous invisible hit targets keep them usable.
+          </p>
+        </div>
+
+        <nav
+          aria-label="Talk contents"
+          className="flex flex-wrap justify-between gap-x-8 gap-y-6 border-t border-border pt-6"
         >
-          {'scroll ↓'}
-        </p>
+          {phases.map((phase) => (
+            <div key={phase.id} className="flex flex-col gap-1.5">
+              <span className="font-mono text-xs font-semibold tracking-[0.12em] text-foreground">
+                {phase.number}
+              </span>
+              <span className="font-mono text-xs uppercase tracking-[0.08em] text-muted-foreground">
+                {phase.title}
+              </span>
+            </div>
+          ))}
+        </nav>
+        </div>
       </header>
 
       {phases.map((phase) => (
