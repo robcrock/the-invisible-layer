@@ -393,10 +393,14 @@ export function ScatterVoronoi({ stage }: { stage?: string }) {
             />
           ))}
 
-          {/* active-point ring */}
+          {/* active-point ring: the position snaps to the owned point (set via
+              style, never tweened) so the ring can't slide in from the origin;
+              only opacity animates, so it fades in on the target itself. */}
           {activePt && !running && mode !== 'naive' && (
             <motion.g
-              animate={{ x: activePt.px, y: activePt.py }}
+              style={{ x: activePt.px, y: activePt.py }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
               transition={
                 reducedMotion
                   ? { duration: 0 }

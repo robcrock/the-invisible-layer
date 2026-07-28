@@ -14,10 +14,10 @@ type Step =
 
 /**
  * The single top bar that spans the whole deck. It starts as the hero cover's
- * header — the talk kicker and the `— / 05` counter, borderless so it melts
- * into the page — then, as the reader scrolls into the talk, it morphs in
+ * header — the talk kicker and the `— / NN` phase counter, borderless so it
+ * melts into the page — then, as the reader scrolls into the talk, it morphs in
  * place: the hairline fades in, the left cluster crossfades from the kicker to
- * the phase tick-rail + `NN / Title`, and the `— / 05` counter fades out. One
+ * the phase tick-rail + `NN / Title`, and the counter fades out. One
  * element, so the cover header and the phase nav are the same object rather
  * than a handoff between two.
  *
@@ -139,7 +139,7 @@ export function DeckHeader({ phases }: { phases: Phase[] }) {
               A talk on interaction design in data visualization
             </p>
             <p className="shrink-0 font-mono text-[0.72rem] uppercase tracking-[0.14em] text-muted-foreground">
-              {'— / 05'}
+              {`— / ${phases[phases.length - 1].number}`}
             </p>
           </div>
 

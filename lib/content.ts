@@ -155,6 +155,23 @@ export type Beat = {
   demoStage?: string
 }
 
+/**
+ * One of the three takeaway laws, rendered as a card in the Principles slide's
+ * horizontal triptych (see `principleCards`).
+ */
+export type PrincipleCard = {
+  id: string
+  /** The named law, shown as the card eyebrow. */
+  law: string
+  /** The plain-language statement — the card's headline. */
+  statement: string
+  note: string
+  /** The demo chapter where the audience will measure this law. */
+  chapter: string
+  /** principleIllustration key — the diagram at the top of the card. */
+  illustration: string
+}
+
 export type Phase = {
   id: string
   number: string
@@ -164,6 +181,35 @@ export type Phase = {
   demo?: string
   beats: Beat[]
 }
+
+// The Principles slide renders these three as a horizontal card triptych —
+// the "tell them what you'll tell them" preview of the named laws.
+export const principleCards: PrincipleCard[] = [
+  {
+    id: 'fitts',
+    law: "Fitts's Law",
+    statement: 'Acquisition time grows as targets shrink',
+    note: 'The smaller the target, the longer every click takes — and an honest chart is full of them.',
+    chapter: 'Bars',
+    illustration: 'fitts',
+  },
+  {
+    id: 'steering',
+    law: 'Steering Law',
+    statement: 'Difficulty grows with length over width',
+    note: 'Tracing a long, thin path is the hardest pointing task there is. A 2px line is about as thin as it gets.',
+    chapter: 'Lines',
+    illustration: 'steering',
+  },
+  {
+    id: 'target',
+    law: 'Target size',
+    statement: 'Small is fine if the space around it is yours',
+    note: "WCAG's spacing exception lets a small mark pass when the clear space around it belongs to it.",
+    chapter: 'Scatter',
+    illustration: 'target-size',
+  },
+]
 
 export const phases: Phase[] = [
   {
@@ -196,8 +242,22 @@ export const phases: Phase[] = [
     ],
   },
   {
-    id: 'bars',
+    id: 'principles',
     number: '01',
+    title: 'The Principles',
+    summary: 'Two laws and a rule — named before you feel them.',
+    beats: [
+      {
+        id: 'principles',
+        kicker: 'THE TAKEAWAYS',
+        title: 'Three principles decide how a chart feels',
+        body: "Two laws of pointing and one rule about target size set how hard a chart is to use. You'll measure all three yourself — here they are, up front.",
+      },
+    ],
+  },
+  {
+    id: 'bars',
+    number: '02',
     title: 'Bars',
     summary: 'The idea at its simplest: target the category, not the rectangle.',
     demo: 'bars-fitts',
@@ -247,7 +307,7 @@ export const phases: Phase[] = [
   },
   {
     id: 'lines',
-    number: '02',
+    number: '03',
     title: 'Lines',
     summary: 'The target stops being drawn and becomes computed.',
     demo: 'lines-trace',
@@ -298,7 +358,7 @@ export const phases: Phase[] = [
   },
   {
     id: 'scatter',
-    number: '03',
+    number: '04',
     title: 'Scatter',
     summary: 'Geometry only an algorithm can produce.',
     demo: 'scatter-voronoi',
@@ -349,7 +409,7 @@ export const phases: Phase[] = [
   },
   {
     id: 'the-turn',
-    number: '04',
+    number: '05',
     title: 'The counterargument',
     summary: 'The chart that needs nothing.',
     demo: 'the-turn-heatmap',
@@ -372,10 +432,16 @@ export const phases: Phase[] = [
   },
   {
     id: 'close',
-    number: '05',
+    number: '06',
     title: 'Close',
     summary: 'Honest mark, generous target.',
     beats: [
+      {
+        id: 'close-reprise',
+        kicker: 'THE THREE PRINCIPLES',
+        title: 'What you just measured',
+        body: 'Fitts: small targets cost time. Steering: thin paths cost more. Target size: a 3px dot passes when the space around it is its own. Three ideas, one move — an honest mark with a generous target.',
+      },
       {
         id: 'close-1',
         title: 'Invisible target, unmissable feedback',
