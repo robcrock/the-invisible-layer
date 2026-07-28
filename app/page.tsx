@@ -49,7 +49,7 @@ export default function Page() {
 
       <footer className="mx-auto max-w-6xl px-6 pb-32 pt-8 lg:px-10">
         <p className="font-mono text-xs text-muted-foreground">
-          The Invisible Layer — fin.
+          The Invisible Layer. Fin.
         </p>
       </footer>
     </main>
