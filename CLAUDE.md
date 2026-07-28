@@ -147,18 +147,23 @@ consolidate them).
 ## Reference: full phase/beat outline
 
 **00 Cold open** (CHALLENGE hunt → "the chart is honest" → THESIS + reveal) ·
-**01 Bars** (3px bar → ROUND 1 drawn rects → band targets + `fill:none` gotcha
-→ ROUND 2 bands → Fitts's Law measured → "target the category" takeaway) ·
-**02 Lines** (trace the cold open's line → ROUND 1 five dates on the stroke →
-bisector pivot → ROUND 2 computed → Steering Law measured, #078 pays off →
-why tooltips vanish) · **03 Scatter** (twin-steal → ROUND 1 find five dots →
-Voronoi reveal → ROUND 2 nearest-point → misses hit zero, bubble cursor + WCAG
-aside → radius clamp tradeoff) · **04 The turn** (live heatmap counterexample — hover anywhere, debug reveals
-zero gap, 100% coverage; the take-home test) · **05 Close** (invisible target
-/ unmissable feedback;
+**01 The Principles** (prose preview — names the three takeaways up front: Fitts's
+Law, the Steering Law, and target size / WCAG's spacing exception, each tagged with
+the chapter where you'll feel it) · **02 Bars** (3px bar → ROUND 1 drawn rects →
+band targets + `fill:none` gotcha → ROUND 2 bands → Fitts's Law measured → "target
+the category" takeaway) · **03 Lines** (trace the cold open's line → ROUND 1 five
+dates on the stroke → bisector pivot → ROUND 2 computed → Steering Law measured,
+#078 pays off → why tooltips vanish) · **04 Scatter** (twin-steal → ROUND 1 find
+five dots → Voronoi reveal → ROUND 2 nearest-point → misses hit zero, bubble cursor
++ WCAG aside → radius clamp tradeoff) · **05 The turn** (live heatmap counterexample
+— hover anywhere, debug reveals zero gap, 100% coverage; the take-home test) ·
+**06 Close** (THE THREE PRINCIPLES reprise → invisible target / unmissable feedback;
 takeaway: *the mark stays honest to the data, the target stays generous to the
 human*).
 
-The named laws (Fitts, Steering, bubble cursor, WCAG spacing exception) are
-**payoffs delivered after the felt experience, never the spine** — the audience
-plays first, the law names what they just measured.
+The three takeaways (Fitts, Steering, target size) are now **previewed after the
+Preamble (01 The Principles) and reprised at the Close** — the classic tell-them /
+tell-them / tell-them arc. Inside the demo chapters the named laws are still
+**payoffs delivered after the felt experience, never the spine**: the audience plays
+first and the `MEASURED` beat names what they just measured. The bubble cursor stays
+a Scatter-chapter technique, not a headline takeaway (it's a result, not a law).

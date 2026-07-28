@@ -5,6 +5,7 @@ import type { Phase } from '@/lib/content'
 import { demoRegistry } from '@/components/demos'
 import { BeatBlock } from './beat-block'
 import { DemoSlot } from './demo-slot'
+import { PrinciplesSlide } from './principles-slide'
 
 export function PhaseSection({ phase }: { phase: Phase }) {
   const [activeIndex, setActiveIndex] = useState(0)
@@ -60,6 +61,9 @@ export function PhaseSection({ phase }: { phase: Phase }) {
             </div>
           </div>
         </>
+      ) : phase.id === 'principles' ? (
+        /* The takeaway laws as a single slide: heading + card triptych. */
+        <PrinciplesSlide heading={phase.beats[0]} onActive={handleActive} />
       ) : (
         /* Prose phases (no pinned demo): a single centered column. */
         <div className="mx-auto max-w-2xl px-6 pb-[10vh] pt-[6vh]">
