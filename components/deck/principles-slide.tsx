@@ -78,9 +78,6 @@ export function PrinciplesSlide({ heading, onActive }: PrinciplesSlideProps) {
             <p className="mt-3 text-[0.98rem] leading-[1.5] text-foreground/70">
               {card.note}
             </p>
-            <p className="mt-auto border-t border-border pt-5 font-mono text-[0.72rem] uppercase tracking-[0.12em] text-muted-foreground">
-              Measured in the {card.chapter}
-            </p>
           </motion.div>
         ))}
       </div>
