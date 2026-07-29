@@ -191,7 +191,7 @@ export function DeckHeader({ phases }: { phases: Phase[] }) {
               disabled={atStart}
               className="h-8 w-8 rounded-[var(--radius-sm)]"
             />
-            <span className="h-4 w-px bg-border" aria-hidden="true" />
+            <span className="mx-0.5 h-4 w-px bg-border" aria-hidden="true" />
             <StepButton
               dir="next"
               onClick={goNext}
