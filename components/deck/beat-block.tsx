@@ -41,7 +41,7 @@ export function BeatBlock({ beat, index, onActive }: BeatBlockProps) {
               {beat.kicker}
             </p>
           )}
-          <h3 className="text-pretty font-sans text-[clamp(2rem,3.2vw,2.75rem)] font-medium leading-[1.08] tracking-[-0.025em] text-foreground">
+          <h3 className="text-balance font-sans text-[clamp(2rem,3.2vw,2.75rem)] font-medium leading-[1.08] tracking-[-0.025em] text-foreground">
             {beat.title}
           </h3>
           <p className="mt-6 max-w-[40ch] text-pretty text-[1.2rem] leading-[1.6] text-foreground/70">
