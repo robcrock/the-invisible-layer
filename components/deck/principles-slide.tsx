@@ -44,7 +44,7 @@ export function PrinciplesSlide({ heading, onActive }: PrinciplesSlideProps) {
             {heading.kicker}
           </p>
         )}
-        <h3 className="text-pretty font-sans text-[clamp(1.9rem,3vw,2.6rem)] font-medium leading-[1.08] tracking-[-0.025em] text-foreground">
+        <h3 className="text-balance font-sans text-[clamp(1.9rem,3vw,2.6rem)] font-medium leading-[1.08] tracking-[-0.025em] text-foreground">
           {heading.title}
         </h3>
         <p className="mt-5 max-w-[52ch] text-pretty text-[1.1rem] leading-[1.55] text-foreground/70">
@@ -72,7 +72,7 @@ export function PrinciplesSlide({ heading, onActive }: PrinciplesSlideProps) {
             <p className="font-mono text-[0.72rem] font-medium uppercase tracking-[0.14em] text-muted-foreground">
               {card.law}
             </p>
-            <h4 className="mt-3 text-pretty font-sans text-[1.35rem] font-medium leading-[1.2] tracking-[-0.015em] text-foreground">
+            <h4 className="mt-3 text-balance font-sans text-[1.35rem] font-medium leading-[1.2] tracking-[-0.015em] text-foreground">
               {card.statement}
             </h4>
             <p className="mt-3 text-[0.98rem] leading-[1.5] text-foreground/70">
