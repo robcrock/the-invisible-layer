@@ -22,7 +22,7 @@ export function BeatBlock({ beat, index, onActive }: BeatBlockProps) {
   return (
     <div
       ref={ref}
-      className="flex min-h-[80vh] items-center md:min-h-[85vh]"
+      className="flex min-h-[80dvh] items-center md:min-h-[85dvh]"
       data-beat-id={beat.id}
     >
       <motion.div

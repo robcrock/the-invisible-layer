@@ -52,7 +52,7 @@ export function PrinciplesSlide({ heading, onActive }: PrinciplesSlideProps) {
         </p>
       </motion.div>
 
-      <div className="grid gap-5 md:grid-cols-3">
+      <div className="grid gap-5 lg:grid-cols-3">
         {principleCards.map((card, i) => (
           <motion.div
             key={card.id}

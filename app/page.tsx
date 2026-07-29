@@ -27,7 +27,7 @@ export default function Page() {
 
         <nav
           aria-label="Talk contents"
-          className="flex flex-wrap justify-between gap-x-8 gap-y-6 border-t border-border pt-6"
+          className="grid grid-cols-3 gap-x-8 gap-y-6 border-t border-border pt-6 sm:grid-cols-4 lg:grid-cols-7"
         >
           {phases.map((phase) => (
             <div key={phase.id} className="flex flex-col gap-1.5">
