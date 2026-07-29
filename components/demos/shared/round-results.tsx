@@ -101,7 +101,7 @@ export function RoundResults({
           ease: EASE_OUT,
           delay: reducedMotion ? 0 : 0.16,
         }}
-        className="font-mono text-sm text-accent"
+        className="font-mono text-xl font-semibold text-accent"
       >
         {copy.delta.replace('{delta}', String(delta))}
       </motion.p>

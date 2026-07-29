@@ -50,7 +50,7 @@
 /*
   Braun instrument theme (dieter-grid, designdotmd.directory/d/dieter-grid):
   - neutral #E7E5E1 concrete page, #F3F1EC instrument surfaces
-  - ink #0F1113, metadata grey #6B6F74
+  - ink #0F1113, metadata grey #5E6266
   - one accent: utility orange #D95600 — the control that does something.
     Reserved for the primary action, the debug/hit-target layer, the
     progress bar, and the active beat square. Flat on purpose: no
@@ -69,7 +69,7 @@
   --secondary: #dedbd5;
   --secondary-foreground: #0f1113;
   --muted: #dedbd5;
-  --muted-foreground: #6b6f74;
+  --muted-foreground: #5e6266;
   --accent: #d95600;
   --accent-foreground: #f3f1ec;
   --destructive: oklch(0.577 0.245 27.325);
