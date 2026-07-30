@@ -47,6 +47,11 @@ export function BeatBlock({ beat, index, onActive }: BeatBlockProps) {
           <p className="mt-6 max-w-[40ch] text-pretty text-[1.2rem] leading-[1.6] text-foreground/80">
             {beat.body}
           </p>
+          {beat.code && (
+            <pre className="mt-6 w-full max-w-[56ch] overflow-x-auto rounded-[var(--radius-lg)] border border-border bg-card px-5 py-3.5 font-mono text-[0.8rem] leading-[1.7] text-foreground">
+              <code>{beat.code}</code>
+            </pre>
+          )}
         </motion.div>
       </motion.div>
     </div>
