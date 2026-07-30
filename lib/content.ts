@@ -151,6 +151,8 @@ export type Beat = {
   kicker?: string
   title: string
   body: string
+  /** Optional mono code aside rendered beneath the body. */
+  code?: string
   /** Stage the phase’s pinned demo adopts when this beat activates. */
   demoStage?: string
 }
@@ -324,7 +326,7 @@ export const phases: Phase[] = [
         id: 'bars-6',
         kicker: 'IN YOUR WORK',
         title: 'Target the category, not the rectangle',
-        body: "This works anywhere you’ve got small categorical values: KPI bars, the sparkbars buried in a table. One catch. An invisible target gives no hint that it’s there, so the response has to fire instantly and obviously. Feedback carries the other half of the load.",
+        body: "This works anywhere you’ve got small categorical values: KPI bars, sparkbars, and others. Don’t forget, an invisible target gives no hint that it’s there, so it’s smart to include a hint.",
       },
     ],
   },
@@ -345,36 +347,39 @@ export const phases: Phase[] = [
       {
         id: 'lines-2',
         kicker: 'ROUND 1',
-        title: 'Five dates. On the stroke.',
-        body: 'Click the stroke at each pulsing tick, in order. This is the Steering Law in the wild: the longer and thinner the path, the harder the chase. And two pixels is about as thin as thin gets.',
+        title: 'Five dates. Go!',
+        body: 'Click the stroke at each pulsing tick, in order. The Steering Law states: the longer and thinner the path, the harder the work.',
         demoStage: 'game-1',
       },
       {
         id: 'lines-3',
         kicker: 'THE FIX',
-        title: 'One overlay, bisector math',
-        body: "Drop one invisible sheet over the whole plot, and as the mouse moves, snap to the nearest date. The target isn’t drawn anymore. It’s computed on the fly. Every pixel in the chart now belongs to a date.",
+        title: 'Make the plot the path',
+        body: 'Drop one invisible sheet over the whole plot, and as the mouse moves, snap to the nearest date.',
+        code: `const bisect = d3.bisector(d => d.px).center
+const i = bisect(points, pointer.x)
+const nearest = points[i]`,
         demoStage: 'computed',
       },
       {
         id: 'lines-4',
         kicker: 'ROUND 2',
-        title: 'Same five dates',
-        body: 'Now click anywhere near each tick, and the chart figures out which date you meant. You just stopped aiming altogether.',
+        title: 'Five dates… again. Go!',
+        body: "It’s so much easier to hit the target in one dimension.",
         demoStage: 'game-2',
       },
       {
         id: 'lines-5',
         kicker: 'MEASURED',
-        title: 'The target became computed',
-        body: 'Look at the delta. Missing the line is flat-out impossible now, and #078, the value we couldn’t read back at the start, gives itself up in a fraction of the time.',
+        title: 'Let the computer do some of the heavy lifting',
+        body: 'Look at the delta! Nailing these tiny targets feels easy now.',
         demoStage: 'results',
       },
       {
         id: 'lines-6',
         kicker: 'IN YOUR WORK',
         title: 'Why your tooltip vanishes',
-        body: "You know the tooltip that scoots away the second you reach for it? Here’s why it does that. It’s glued to your cursor instead of the data point, and it won’t let you land on it. Anchor it to the data and let your pointer walk right into it. That’s the trick behind every serious charting library.",
+        body: "You know the tooltip that scoots away the second you reach for it? Here’s why it does that. It’s glued to your cursor instead of the data point, and it won’t let you land on it. Anchor it to the data and let your pointer walk right into it.",
         demoStage: 'craft',
       },
     ],
