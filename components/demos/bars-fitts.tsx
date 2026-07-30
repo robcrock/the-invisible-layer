@@ -129,6 +129,9 @@ export function BarsFitts({ stage }: { stage?: string }) {
   const onTargetDown = (e: React.PointerEvent) => {
     e.stopPropagation()
     if (hitRect) setFlash((f) => ({ key: (f?.key ?? 0) + 1, ...hitRect }))
+    // Clear hover on hit so the just-cleared target neither leaves its bar lit
+    // nor drags a hover fill onto the next target's column.
+    setHovered(null)
     dispatch({ type: 'hit', t: performance.now() })
   }
 
@@ -275,30 +278,61 @@ export function BarsFitts({ stage }: { stage?: string }) {
           {!running &&
             mode === 'band' &&
             data.map((d, i) => (
+              <g key={d.label}>
+                {/* presentational hover fill — never a hit target */}
+                <rect
+                  x={bandX(d.label)}
+                  y={PLOT.y}
+                  width={step}
+                  height={PLOT.h}
+                  pointerEvents="none"
+                  className={`${
+                    reducedMotion ? '' : 'transition-colors duration-150'
+                  } ${hovered === i ? 'fill-foreground/10' : 'fill-transparent'}`}
+                />
+                {/* the actual hit target — fill="transparent" keeps it hittable */}
+                <rect
+                  x={bandX(d.label)}
+                  y={PLOT.y}
+                  width={step}
+                  height={PLOT.h}
+                  fill="transparent"
+                  onPointerEnter={() => setHovered(i)}
+                  onPointerLeave={() => setHovered(null)}
+                  className="cursor-crosshair"
+                />
+              </g>
+            ))}
+
+          {/* Round 2's invisible layer: the full-step band carries the hit.
+              A faint fill on hover confirms the target extent; it lives on a
+              separate pointer-events:none rect so the hit target's
+              fill="transparent" (and hittability) is never touched. */}
+          {running?.round === 2 && target && (
+            <>
+              {/* The band IS the target here, so hover reads orange. No
+                  transition: the rect jumps between columns each hit, and a
+                  fade would smear the fill onto the next column. */}
               <rect
-                key={d.label}
-                x={bandX(d.label)}
+                x={bandX(target.label)}
+                y={PLOT.y}
+                width={step}
+                height={PLOT.h}
+                pointerEvents="none"
+                className={hovered === targetIndex ? 'fill-accent/15' : 'fill-transparent'}
+              />
+              <rect
+                x={bandX(target.label)}
                 y={PLOT.y}
                 width={step}
                 height={PLOT.h}
                 fill="transparent"
-                onPointerEnter={() => setHovered(i)}
+                onPointerDown={onTargetDown}
+                onPointerEnter={() => setHovered(targetIndex)}
                 onPointerLeave={() => setHovered(null)}
                 className="cursor-crosshair"
               />
-            ))}
-
-          {/* Round 2's invisible layer: the full-step band carries the hit. */}
-          {running?.round === 2 && target && (
-            <rect
-              x={bandX(target.label)}
-              y={PLOT.y}
-              width={step}
-              height={PLOT.h}
-              fill="transparent"
-              onPointerDown={onTargetDown}
-              className="cursor-crosshair"
-            />
+            </>
           )}
 
           {/* hit flash — 150ms, re-keyed per hit, at the struck geometry */}
