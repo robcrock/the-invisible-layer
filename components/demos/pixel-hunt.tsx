@@ -304,10 +304,14 @@ export function PixelHunt({ stage }: { stage?: string }) {
               className="stroke-accent/60"
               strokeWidth={1}
             />
+            {/* Card-coloured halo painted behind the glyphs so the orange
+                callout stays legible where it crosses the orange stroke. */}
             <text
               x={marked.px + 40}
               y={marked.py - 32}
-              className="fill-accent font-mono text-[10px]"
+              strokeWidth={3.5}
+              strokeLinejoin="round"
+              className="fill-accent stroke-card font-mono text-[10px] [paint-order:stroke]"
             >
               {copy.stages.callout}
             </text>
