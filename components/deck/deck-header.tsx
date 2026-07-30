@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import type { Phase } from '@/lib/content'
 
 type Step =
@@ -26,7 +26,7 @@ type Step =
  * carry position. Navigation is native smooth scroll (scrollIntoView); the
  * active step is read from a single IntersectionObserver over the hero
  * sentinel and every beat, so the bar stays correct whether the audience
- * scrolls by hand or steps with the buttons.
+ * scrolls by hand, steps with the buttons, or uses the left/right arrow keys.
  */
 export function DeckHeader({ phases }: { phases: Phase[] }) {
   const [activeIdx, setActiveIdx] = useState(0)
@@ -96,17 +96,51 @@ export function DeckHeader({ phases }: { phases: Phase[] }) {
     }
   }, [])
 
-  const go = (index: number) => {
-    const step = steps[index]
-    if (!step) return
-    const el = document.querySelector<HTMLElement>(step.selector)
-    if (!el) return
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    el.scrollIntoView({
-      behavior: reduce ? 'auto' : 'smooth',
-      block: step.kind === 'hero' ? 'start' : 'center',
-    })
-  }
+  const go = useCallback(
+    (index: number) => {
+      const step = steps[index]
+      if (!step) return
+      const el = document.querySelector<HTMLElement>(step.selector)
+      if (!el) return
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      el.scrollIntoView({
+        behavior: reduce ? 'auto' : 'smooth',
+        block: step.kind === 'hero' ? 'start' : 'center',
+      })
+    },
+    [steps],
+  )
+
+  // Left/right arrow keys step through beats, mirroring the prev/next buttons.
+  // A ref feeds the listener the live active index so it binds once. Ignore the
+  // event when a form control has focus (the scatter radius slider owns its own
+  // arrow keys) or when a modifier is held, so browser shortcuts still work.
+  const activeIdxRef = useRef(activeIdx)
+  activeIdxRef.current = activeIdx
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.defaultPrevented || e.repeat) return
+      if (e.metaKey || e.ctrlKey || e.altKey || e.shiftKey) return
+      const t = e.target as HTMLElement | null
+      if (
+        t &&
+        (t.isContentEditable ||
+          t.tagName === 'INPUT' ||
+          t.tagName === 'TEXTAREA' ||
+          t.tagName === 'SELECT')
+      )
+        return
+      if (e.key === 'ArrowRight') {
+        e.preventDefault()
+        go(Math.min(activeIdxRef.current + 1, steps.length - 1))
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault()
+        go(Math.max(activeIdxRef.current - 1, 0))
+      }
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [go, steps])
 
   const cur = steps[activeIdx]
   const atHero = cur.kind === 'hero'
