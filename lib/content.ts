@@ -289,21 +289,21 @@ export const phases: Phase[] = [
         id: 'bars-1',
         kicker: 'CHALLENGE',
         title: 'The 3-pixel bar',
-        body: "Category D scored a 2, so it’s a two-pixel bar. Go ahead, try to hover it. I’ll wait. Nothing’s wrong with the bar. An honest 2 just is that small, which makes it a miserable thing to ask a human to click.",
+        body: "Category D scored a 2, so it’s a two-pixel bar. Go ahead, try to hover it. I’ll wait.",
         demoStage: 'mark',
       },
       {
         id: 'bars-2',
         kicker: 'ROUND 1',
-        title: 'Click it. Ten times. Timed.',
-        body: 'Now every bar is short. Ten clicks, all on the drawn rectangles, and the timer keeps running until you land them. This right here is what your users feel every single day.',
+        title: 'Click it. Ten times.',
+        body: 'This is what your users feel every single day.',
         demoStage: 'game-1',
       },
       {
         id: 'bars-3',
         kicker: 'THE FIX',
-        title: 'Invisible band targets',
-        body: "The fix is almost dumb: make the whole column clickable, not just the bar. One invisible target, floor to ceiling, sitting right where people already point. There’s a fun trap here, though. Empty space and invisible space look identical to a mouse, so you have to tell that blank column to actually listen. The orange shows where your target just grew to.",
+        title: 'Invisible bands become targets',
+        body: 'The fix is almost dumb: make the whole column clickable, not just the bar. Then the target becomes a bar spanning from floor to ceiling. Hard to miss that one.',
         demoStage: 'band',
       },
       {
@@ -316,8 +316,8 @@ export const phases: Phase[] = [
       {
         id: 'bars-5',
         kicker: 'MEASURED',
-        title: "Fitts’s Law, measured",
-        body: "Smaller target, slower click, every single time. That’s Fitts’s Law, and we just put it on a stopwatch. That number? It’s the cost of one click. Now picture every hover your dashboard serves up in a week.",
+        title: "Fitts’s Law",
+        body: 'Smaller target, slower click, every time. Those costs add up.',
         demoStage: 'results',
       },
       {
