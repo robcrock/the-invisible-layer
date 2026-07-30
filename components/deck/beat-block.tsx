@@ -10,6 +10,29 @@ type BeatBlockProps = {
   onActive: (index: number) => void
 }
 
+// Renders the body, turning the first occurrence of `link.text` into an
+// anchor. Kept out of the deck's markdown/rich-text scope on purpose: one
+// optional inline link is all any beat needs.
+function renderBody(body: string, link?: Beat['link']) {
+  if (!link) return body
+  const at = body.indexOf(link.text)
+  if (at === -1) return body
+  return (
+    <>
+      {body.slice(0, at)}
+      <a
+        href={link.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="underline decoration-1 underline-offset-2 transition-colors hover:text-accent"
+      >
+        {link.text}
+      </a>
+      {body.slice(at + link.text.length)}
+    </>
+  )
+}
+
 export function BeatBlock({ beat, index, onActive }: BeatBlockProps) {
   const ref = useRef<HTMLDivElement>(null)
   const reducedMotion = useReducedMotion()
@@ -45,7 +68,7 @@ export function BeatBlock({ beat, index, onActive }: BeatBlockProps) {
             {beat.title}
           </h3>
           <p className="mt-6 max-w-[40ch] text-pretty text-[1.2rem] leading-[1.6] text-foreground/80">
-            {beat.body}
+            {renderBody(beat.body, beat.link)}
           </p>
           {beat.code && (
             <pre className="mt-6 w-full max-w-[56ch] overflow-x-auto rounded-[var(--radius-lg)] border border-border bg-card px-5 py-3.5 font-mono text-[0.8rem] leading-[1.7] text-foreground">
