@@ -47,9 +47,11 @@ export function PrinciplesSlide({ heading, onActive }: PrinciplesSlideProps) {
         <h3 className="text-balance font-sans text-[clamp(1.9rem,3vw,2.6rem)] font-medium leading-[1.08] tracking-[-0.025em] text-foreground">
           {heading.title}
         </h3>
-        <p className="mt-5 max-w-[52ch] text-pretty text-[1.1rem] leading-[1.55] text-foreground/80">
-          {heading.body}
-        </p>
+        {heading.body && (
+          <p className="mt-5 max-w-[52ch] text-pretty text-[1.1rem] leading-[1.55] text-foreground/80">
+            {heading.body}
+          </p>
+        )}
       </motion.div>
 
       <div className="grid gap-5 lg:grid-cols-3">
