@@ -20,8 +20,7 @@ export default function Page() {
             Layer
           </h1>
           <p className="max-w-[45ch] text-pretty text-[clamp(1.1rem,1.7vw,1.7rem)] leading-[1.4] tracking-[-0.01em] text-foreground/80">
-            The mark you see is not the target you touch. Honest marks keep
-            charts truthful; generous invisible hit targets keep them usable.
+            Being truthful should not mean less useful.
           </p>
         </div>
 

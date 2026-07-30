@@ -215,22 +215,22 @@ export const phases: Phase[] = [
   {
     id: 'coverage',
     number: '00',
-    title: 'Coverage',
+    title: 'Intro',
     summary: 'The one chart where ink and target are the same shape.',
     demo: 'the-turn-heatmap',
     beats: [
       {
         id: 'coverage-1',
         kicker: 'FULL COVERAGE',
-        title: 'A chart that already works',
-        body: 'Hover anywhere on this heatmap and it answers. Nothing to aim at, nowhere to miss. Watch the readout: live pixels, 100% of the plot. Hold onto that number, because we spend the rest of the talk trying to win it back.',
+        title: 'A chart that already feels like magic',
+        body: 'When the plot is already fully covered, there’s no room for you to miss the mark.',
         demoStage: 'hover',
       },
       {
         id: 'coverage-2',
         kicker: 'WHY IT WORKS',
-        title: 'Here, the ink is the target',
-        body: "Every cell is a mark, and every mark fills its whole square, so what you see is exactly what you can hit. That’s the entire reason it feels effortless: ink and interaction both sit at 100%. Almost nothing else gets that for free. Tell the truth about a small number and you get a three-pixel bar or a two-pixel line, and good luck landing on that.",
+        title: 'The ink is the tap target',
+        body: 'This is one of the rare scenarios where what we want to interact with consumes all possible space uniformly.',
         demoStage: 'coverage',
       },
     ],
@@ -238,28 +238,28 @@ export const phases: Phase[] = [
   {
     id: 'cold-open',
     number: '01',
-    title: 'The honest chart',
+    title: 'Perfection',
     summary: 'Strip the ink and the coverage goes with it.',
     demo: 'cold-open-pixel-hunt',
     beats: [
       {
         id: 'cold-open-1',
         kicker: 'CHALLENGE',
-        title: 'Now read one value',
-        body: "Same honesty, now on a line instead of a grid. A hundred and twenty points, one marked date. Hit start and chase its value down a two-pixel stroke while the clock runs. Sounds easy. It really isn’t.",
+        title: 'Point to the point',
+        body: 'Hit start and chase its value down a two-pixel stroke while the clock runs.',
         demoStage: 'hunt',
       },
       {
         id: 'cold-open-2',
         title: "The chart isn’t broken",
-        body: "A small value is a short bar. A trend is a thin line. Nobody was careless here; the data itself set those target sizes, and that clock was the bill for telling the truth. Coverage just cratered to about one and a half percent, down from a hundred.",
+        body: 'A small value means a small target. The data set those target sizes. Small targets take more time to hit.',
         demoStage: 'honest',
       },
       {
         id: 'cold-open-3',
         kicker: 'THESIS',
         title: "What you draw shouldn’t decide what you can hit",
-        body: "One unwritten rule is doing all the damage: your targets have to match your ink. So let’s break it. Keep the marks honest and sparse, then shove coverage back to 100% with targets nobody ever sees. That’s the invisible layer, and by the time we reach the lines, we run it on this exact chart.",
+        body: 'This talk is about designing an invisible layer to reduce user effort.',
         demoStage: 'reveal',
       },
     ],
@@ -267,7 +267,7 @@ export const phases: Phase[] = [
   {
     id: 'principles',
     number: '02',
-    title: 'The Principles',
+    title: 'Principles',
     summary: 'Two laws and a rule, named before you feel them.',
     beats: [
       {
@@ -281,7 +281,7 @@ export const phases: Phase[] = [
   {
     id: 'bars',
     number: '03',
-    title: 'Bars',
+    title: 'Fitts Law',
     summary: 'The idea at its simplest: target the category, not the rectangle.',
     demo: 'bars-fitts',
     beats: [
@@ -331,7 +331,7 @@ export const phases: Phase[] = [
   {
     id: 'lines',
     number: '04',
-    title: 'Lines',
+    title: 'Steering Law',
     summary: 'The target stops being drawn and becomes computed.',
     demo: 'lines-trace',
     beats: [
@@ -382,7 +382,7 @@ export const phases: Phase[] = [
   {
     id: 'scatter',
     number: '05',
-    title: 'Scatter',
+    title: 'Hidden Affordance',
     summary: 'Geometry only an algorithm can produce.',
     demo: 'scatter-voronoi',
     beats: [
@@ -433,7 +433,7 @@ export const phases: Phase[] = [
   {
     id: 'close',
     number: '06',
-    title: 'Close',
+    title: 'Outro',
     summary: 'Honest mark, generous target.',
     beats: [
       {
