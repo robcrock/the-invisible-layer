@@ -153,6 +153,8 @@ export type Beat = {
   body: string
   /** Optional mono code aside rendered beneath the body. */
   code?: string
+  /** Optional inline link: the first occurrence of `text` in the body becomes an anchor to `href`. */
+  link?: { text: string; href: string }
   /** Stage the phase’s pinned demo adopts when this beat activates. */
   demoStage?: string
 }
@@ -394,43 +396,61 @@ const nearest = points[i]`,
       {
         id: 'scatter-1',
         kicker: 'CHALLENGE',
-        title: 'Tiny dots, two failure modes',
-        body: 'Ninety points, three-pixel dots. Find the one wearing a ring and hover it. Miss by a hair and nothing happens. Nail it and the wrong name might pop up anyway, because two dots are stacked on the same spot and the browser just keeps whichever it drew last.',
+        title: 'Tortured by tiny dots',
+        body: 'Ninety points, only three pixels across. Can you hit the highlighted point? Miss by a hair and nothing happens. Nail it and the wrong name could pop up. When two dots are stacked on the same spot, the browser just keeps whichever it drew last.',
         demoStage: 'naive',
       },
       {
         id: 'scatter-2',
         kicker: 'ROUND 1',
-        title: 'Find five dots. Timed.',
-        body: "Five ringed dots, in order, clock running. Every empty click is a miss. Every wrong name is a mis-fire. Only about 1.5% of this plot is even alive, so really, you’re aiming at confetti.",
+        title: 'Find five dots. The clock is ticking.',
+        body: 'Every empty click is a miss. Every wrong name is mis-direction. Only about 1.5% of this plot is even alive. No sweat, right?',
         demoStage: 'game-1',
       },
       {
         id: 'scatter-3',
         kicker: 'THE FIX',
         title: 'Every pixel belongs to somebody',
-        body: "Here’s the move: hand every pixel in the plot to its nearest point. It’s called a Voronoi tessellation, and it carves the space into territories, one per dot. It’s geometry you could never draw by hand, and the computer works it out in a couple of lines.",
+        body: "Here’s the move: hand every pixel in the plot to its nearest point. It’s called a Voronoi tessellation, and it carves the space into territories, one per dot.",
+        code: `const delaunay = d3.Delaunay.from(
+  points,
+  d => d.px,
+  d => d.py,
+)
+const i = delaunay.find(pointer.x, pointer.y)
+const nearest = points[i]`,
         demoStage: 'voronoi',
       },
       {
         id: 'scatter-4',
         kicker: 'ROUND 2',
         title: 'Same five dots',
-        body: 'Click anywhere near the ring, and the closest dot claims it. Keep an eye on the miss counter. It never budges.',
+        body: 'Click anywhere near the ring, and the closest dot claims it.',
         demoStage: 'game-2',
       },
       {
         id: 'scatter-5',
         kicker: 'MEASURED',
-        title: 'Misses: impossible',
-        body: "The delta’s nice, but the zero is the real headline: misses just became impossible. Researchers named this the bubble cursor back in 2005, and WCAG’s spacing rule for tiny targets is making the very same argument.",
+        title: 'Accuracy improved immediately',
+        body: "Researchers named this the bubble cursor back in 2005, and WCAG’s spacing rule for tiny targets attempts to enforce this standard.",
+        link: {
+          text: 'WCAG’s spacing rule',
+          href: 'https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum',
+        },
         demoStage: 'results',
       },
       {
         id: 'scatter-6',
         kicker: 'TRADEOFF',
         title: 'Clamp the radius',
-        body: 'There’s a catch to 100% coverage: a hover way out in empty space, 400 pixels from anything, still fires the nearest dot. That feels broken. So you put some dead space back on purpose and cap how far a point can reach. Drag the slider. Dead zones versus false hits is a real tradeoff, and no single setting is right for everyone.',
+        body: 'A hover far out in empty space still fires the nearest dot, which feels broken. So swap delaunay.find for a quadtree and cap how far it reaches. Drag the slider; there’s no perfect setting.',
+        code: `const qt = d3.quadtree()
+  .x(d => d.px)
+  .y(d => d.py)
+  .addAll(points)
+
+const hit = qt.find(pointer.x, pointer.y, radius)
+// past \`radius\`, hit is undefined — a dead zone`,
         demoStage: 'clamp',
       },
     ],
@@ -444,24 +464,24 @@ const nearest = points[i]`,
       {
         id: 'close-reprise',
         kicker: 'THE THREE PRINCIPLES',
-        title: 'What you just measured',
-        body: "So, three things worth stealing. Small targets are slow. Thin lines are worse. And a three-pixel dot is totally fine, as long as it owns the space around it. Different charts, but it’s the same move every time: draw the honest mark, then hand it a target bigger than it looks.",
+        title: 'How we measure our impact',
+        body: "Different charts, but it’s the same move every time: draw the honest mark, then hand it the biggest reasonable target you can.",
       },
       {
         id: 'close-1',
-        title: 'Invisible target, unmissable feedback',
-        body: "Once the target goes invisible, the feedback has to do all the talking. The instant highlight, the tooltip that finally holds still, the little flash on every hit. That’s what makes something you can’t even see feel trustworthy.",
+        title: 'Add a sense of presence',
+        body: "Once the target goes invisible, the feedback has to do the work. That’s how we let the user know what’s actually there.",
       },
       {
         id: 'close-test',
         kicker: 'TAKE IT HOME',
         title: 'Put a clock on your own charts',
-        body: "One question finds the gap in anything you ship: how much of this chart responds, and how much of it should? Flip the targets on and count the live pixels. A skinny pie slice or one band of a stacked area usually comes back low, and there’s your gap. If it already reads 100, the way that heatmap did when we started, then great. Go home. You’re done.",
+        body: "One question finds the gap in anything you ship: how much of this chart responds, and how much of it should? If it already reads 100, the way that heatmap did when we started, then great. Go home. You’re done.",
       },
       {
         id: 'close-2',
         kicker: 'TAKEAWAY',
-        title: 'The mark stays honest to the data; the target stays generous to the human',
+        title: 'The mark stays bound to the data; the target stays generous to the human',
         body: "That’s the invisible layer.",
       },
     ],
