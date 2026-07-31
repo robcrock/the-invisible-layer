@@ -6,6 +6,7 @@ import { demoRegistry } from '@/components/demos'
 import { BeatBlock } from './beat-block'
 import { DemoSlot } from './demo-slot'
 import { PrinciplesSlide } from './principles-slide'
+import { SurfaceAreaCards } from './surface-area-cards'
 
 export function PhaseSection({ phase }: { phase: Phase }) {
   const [activeIndex, setActiveIndex] = useState(0)
@@ -64,6 +65,26 @@ export function PhaseSection({ phase }: { phase: Phase }) {
       ) : phase.id === 'principles' ? (
         /* The takeaway laws as a single slide: heading + card triptych. */
         <PrinciplesSlide heading={phase.beats[0]} onActive={handleActive} />
+      ) : phase.id === 'close' ? (
+        /* Outro: the reprise beat renders as a full-width card slide (the
+           three surface-area techniques), then the remaining beats as prose. */
+        <>
+          <SurfaceAreaCards
+            heading={phase.beats[0]}
+            index={0}
+            onActive={handleActive}
+          />
+          <div className="mx-auto max-w-2xl px-6 pb-[10vh]">
+            {phase.beats.slice(1).map((beat, i) => (
+              <BeatBlock
+                key={beat.id}
+                beat={beat}
+                index={i + 1}
+                onActive={handleActive}
+              />
+            ))}
+          </div>
+        </>
       ) : (
         /* Prose phases (no pinned demo): a single centered column. */
         <div className="mx-auto max-w-2xl px-6 pb-[10vh] pt-[6vh]">
