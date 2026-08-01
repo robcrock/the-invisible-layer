@@ -1,6 +1,7 @@
 import { phases } from '@/lib/content'
 import { DeckHeader } from '@/components/deck/deck-header'
 import { PhaseSection } from '@/components/deck/phase-section'
+import { Connect } from '@/components/deck/connect'
 
 export default function Page() {
   return (
@@ -46,11 +47,7 @@ export default function Page() {
         <PhaseSection key={phase.id} phase={phase} />
       ))}
 
-      <footer className="mx-auto max-w-6xl px-6 pb-32 pt-8 lg:px-10">
-        <p className="font-mono text-xs text-muted-foreground">
-          The Invisible Layer. Fin.
-        </p>
-      </footer>
+      <Connect />
     </main>
   )
 }
